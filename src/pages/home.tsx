@@ -44,6 +44,8 @@ const Home: FC = () => {
          setBlip(rand)
       }, 2500)
 
+      getRandomLines()
+
       const randomizeLines = setInterval(() => {
          getRandomLines()
       }, 5000)
