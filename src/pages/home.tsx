@@ -14,28 +14,11 @@ const attrs = [
    { id: 3, name: 'Height', value: 'Tall' },
    { id: 4, name: 'Hair', value: 'Brown' },
    { id: 5, name: 'Eyes', value: 'Yes' },
-   { id: 6, name: 'Allignment', value: 'Lawful Good' },
+   { id: 6, name: 'Alignment', value: 'Lawful Good' },
 ]
 
 const Home: FC = () => {
    const [blip, setBlip] = useState<number>(0)
-   const [lines, setLines] = useState<{ x: number; y: number }[]>([])
-
-   const getRandomLines = () => {
-      const width = window.innerWidth
-      const height = window.innerHeight
-      const rand = Math.floor(Math.random() * 40) + 5
-      const lines: { x: number; y: number }[] = []
-
-      for (let i = 0; i < rand; i++) {
-         const y = Math.floor(Math.random() * (height - 35))
-         const x = Math.floor(Math.random() * (width - 5))
-
-         lines.push({ x, y })
-      }
-
-      setLines(lines)
-   }
 
    useEffect(() => {
       const randomizeBlip = setInterval(() => {
@@ -44,27 +27,33 @@ const Home: FC = () => {
          setBlip(rand)
       }, 2500)
 
-      getRandomLines()
-
-      const randomizeLines = setInterval(() => {
-         getRandomLines()
-      }, 5000)
-
       return () => {
          clearInterval(randomizeBlip)
-         clearInterval(randomizeLines)
       }
    }, [])
 
    return (
       <HomeWrapper>
          <Lines>
-            {lines.length > 0 &&
-               lines.map(line => {
-                  const { x, y } = line
+            <Line top='40vh' left='0px' width='20vw' angle='0deg' />
+            <Line top='40vh' left='20vw' width='15vh' angle='90deg' />
+            <Line top='55vh' left='20vw' width='40vw' angle='0deg' />
+            <Line top='55vh' left='20vw' width='45vh' angle='90deg' />
+            <Line top='55vh' left='60vw' width='20vh' angle='270deg' />
+            <Line top='35vh' left='60vw' width='40vw' angle='0deg' />
+            <Line top='55vh' left='50vw' width='55vh' angle='270deg' />
+            <Line top='35vh' left='80vw' width='10vh' angle='90deg' />
+            <Line top='55vh' left='50vw' width='30vh' angle='90deg' />
+            <Line top='85vh' left='50vw' width='40vw' angle='0deg' />
+            <Line top='80vh' left='20vw' width='5vw' angle='180deg' />
 
-                  return <MatrixLine top={y} left={x} />
-               })}
+            <Circle top='44vh' left='calc(80vw - 5px)' />
+            <Circle top='calc(80vh - 5px)' left='15vw' />
+            <Circle top='calc(85vh - 5px)' left='90vw' />
+
+            <NodeOne />
+            <NodeTwo />
+            <NodeThree />
          </Lines>
          <IntroBox>
             <h1>File: Dylan Munson</h1>
@@ -100,48 +89,175 @@ const Lines = styled.div`
    position: absolute;
    top: 0;
    width: 100vw;
-`
-
-const MatrixLine = styled.span<{ top: number; left: number }>`
-   animation: fall 5s linear 0s infinite;
-   background-color: var(--matrix-green);
-   height: 10px;
-   left: ${props => props.left}px;
-   position: absolute;
-   top: ${props => props.top}px;
-   width: 2px;
    z-index: -1;
 
-   ::before,
-   ::after {
-      background-color: var(--matrix-green);
-      content: '';
-      height: 10px;
+   span {
       position: absolute;
-      width: 2px;
+      height: 5px;
+      width: 25px;
+      background-color: var(--matrix-green);
+      border-radius: 30%;
+      filter: blur(1.5px);
    }
+`
 
-   ::before {
-      opacity: 0.33;
-      top: -20px;
-   }
+const Line = styled.div<{
+   width: string
+   angle: string
+   top: string
+   left: string
+}>`
+   top: ${props => props.top};
+   left: ${props => props.left};
+   transform: rotate(${props => props.angle});
+   width: ${props => props.width};
 
-   ::after {
-      opacity: 0.66;
-      top: -10px;
-   }
+   position: absolute;
+   background-color: var(--dark-green);
+   height: 2px;
+   transform-origin: 0 1px;
+`
 
-   @keyframes fall {
-      0% {
-         transform: translateY(-100vh);
-      }
+const NodeOne = styled.span`
+   left: -27px;
+   top: calc(40vh - 1.5px);
+
+   animation: moveNodeOne 10s linear 0s infinite;
+
+   @keyframes moveNodeOne {
       50% {
-         transform: translateY(0);
+         transform: rotate(0);
+         left: -27px;
+         top: calc(40vh - 1.5px);
+      }
+      70% {
+         transform: rotate(0);
+         left: calc(20vw - 12.5px);
+         top: calc(40vh - 1.5px);
+      }
+      71% {
+         transform: rotate(90deg);
+         left: calc(20vw - 12.5px);
+         top: calc(40vh - 1.5px);
       }
       100% {
-         transform: translateY(100vh);
+         transform: rotate(90deg);
+         left: calc(20vw - 12.5px);
+         top: calc(100vh + 25px);
       }
    }
+`
+
+const NodeTwo = styled.span`
+   left: -27px;
+   top: calc(40vh - 1.5px);
+
+   animation: moveNodeTwo 16s linear 0s infinite;
+
+   @keyframes moveNodeTwo {
+      69% {
+         transform: rotate(0);
+         left: -27px;
+         top: calc(40vh - 1.5px);
+      }
+      80% {
+         transform: rotate(0);
+         left: calc(20vw - 12.5px);
+         top: calc(40vh - 1.5px);
+      }
+      81% {
+         transform: rotate(90deg);
+         left: calc(20vw - 12.5px);
+         top: calc(40vh - 1.5px);
+      }
+      94% {
+         transform: rotate(90deg);
+         left: calc(20vw - 12.5px);
+         top: calc(80vh - 1.5px);
+      }
+      95% {
+         transform: rotate(180deg);
+         left: calc(20vw - 12.5px);
+         top: calc(80vh - 1.5px);
+      }
+      100% {
+         transform: rotate(180deg);
+         left: 15vw;
+         top: calc(80vh - 1.5px);
+      }
+   }
+`
+
+const NodeThree = styled.span`
+   left: -27px;
+   top: calc(40vh - 1.5px);
+
+   animation: moveNodeThree 26s linear 0s infinite;
+
+   @keyframes moveNodeThree {
+      62% {
+         transform: rotate(0);
+         left: -27px;
+         top: calc(40vh - 1.5px);
+      }
+      67% {
+         transform: rotate(0);
+         left: calc(20vw - 12.5px);
+         top: calc(40vh - 1.5px);
+      }
+      68% {
+         transform: rotate(90deg);
+         left: calc(20vw - 12.5px);
+         top: calc(40vh - 1.5px);
+      }
+      70% {
+         transform: rotate(90deg);
+         left: calc(20vw - 12.5px);
+         top: calc(55vh - 1.5px);
+      }
+      71% {
+         transform: rotate(0);
+         left: calc(20vw - 12.5px);
+         top: calc(55vh - 1.5px);
+      }
+      82% {
+         transform: rotate(0);
+         left: 50vw;
+         top: calc(55vh - 1.5px);
+      }
+      83% {
+         transform: rotate(90deg);
+         left: calc(50vw - 13px);
+         top: calc(55vh - 1.5px);
+      }
+      90% {
+         transform: rotate(90deg);
+         left: calc(50vw - 13px);
+         top: calc(85vh - 1.5px);
+      }
+      91% {
+         transform: rotate(0deg);
+         left: calc(50vw - 13px);
+         top: calc(85vh - 1.5px);
+      }
+      100% {
+         transform: rotate(0deg);
+         left: calc(90vw - 25px);
+         top: calc(85vh - 1.5px);
+      }
+   }
+`
+
+const Circle = styled.div<{ top: string; left: string }>`
+   position: absolute;
+   top: ${props => props.top};
+   left: ${props => props.left};
+
+   width: 10px;
+   height: 10px;
+   border-radius: 50%;
+   background-color: var(--matrix-green);
+   box-shadow: 0px 0px 15px var(--matrix-green);
 `
 
 const HomeWrapper = styled.main`
@@ -207,8 +323,8 @@ const Attributes = styled.div`
 `
 
 const OpenFile = styled.button`
-   align-self: center;
    animation: blinker 1.5s step-start infinite;
+   align-self: center;
    background-color: transparent;
    border: 5px solid var(--matrix-green);
    cursor: pointer;
@@ -217,12 +333,12 @@ const OpenFile = styled.button`
    padding: 0.5em;
    width: 10em;
 
-   :focus,
    :hover {
-      animation: none;
+      animation-play-state: paused;
       border: 5px solid var(--dark-green);
       color: var(--dark-green);
       outline: none;
+      opacity: 1 !important;
    }
 
    ${mediaQueries.laptop`
