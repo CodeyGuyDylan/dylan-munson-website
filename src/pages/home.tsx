@@ -38,9 +38,12 @@ const Home: FC = () => {
    return (
       <HomeWrapper>
          <Circuit />
-         
+
          <IntroBox>
-            <h1>File: Dylan Munson</h1>
+            <h1>
+               File: Dylan Munson
+               <CoverHeader />
+            </h1>
 
             <Details>
                <ProfileImg src={Profile} alt='dylan munson headshot' />
@@ -91,6 +94,47 @@ const IntroBox = styled.section`
    max-width: 90%;
    padding: 10px;
    width: 100%;
+
+   h1 {
+      position: relative;
+   }
+`
+
+const CoverHeader = styled.div`
+   position: absolute;
+   right: 0;
+   top: 0;
+   background: var(--black);
+   width: 100%;
+   height: 100%;
+   animation: uncoverHeader 700ms steps(18, jump-start) 1s forwards;
+
+   ::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 25px;
+      opacity: 0;
+      background-color: var(--matrix-green);
+      animation: blink 750ms step-start 0s 3;
+   }
+
+   @keyframes uncoverHeader {
+      0% {
+         width: 100%;
+      }
+      100% {
+         width: 0%;
+      }
+   }
+
+   @keyframes blink {
+      50% {
+         opacity: 1;
+      }
+   }
 `
 
 const ProfileImg = styled.img`
