@@ -1,5 +1,5 @@
 // Libraries
-import { FC, useEffect, useState } from 'react'
+import { FC, Fragment, useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 // Assets
@@ -7,6 +7,7 @@ import Profile from '../assets/placeholder-headshot.webp'
 
 // Components
 import Circuit from '../components/Circuit'
+import TypedWords from '../components/TypedWords'
 
 // Helper
 import mediaQueries from '../helper/mediaQueries'
@@ -41,8 +42,7 @@ const Home: FC = () => {
 
          <IntroBox>
             <h1>
-               File: Dylan Munson
-               <CoverHeader />
+               <TypedWords delay={1} text='File: Dylan Munson' />
             </h1>
 
             <Details>
@@ -54,7 +54,18 @@ const Home: FC = () => {
 
                      return (
                         <h2 key={id} className={blip === i ? 'blip' : ''}>
-                           {name}: {id === 1 ? <br /> : ''} {value}
+                           {i === 0 ? (
+                              <>
+                                 <TypedWords delay={2} text={`${name}:`} />
+                                 <br />
+                                 <TypedWords delay={2.5} text={value} />
+                              </>
+                           ) : (
+                              <TypedWords
+                                 delay={2.5 + i * 0.5}
+                                 text={`${name}: ${value}`}
+                              />
+                           )}
                         </h2>
                      )
                   })}
@@ -92,49 +103,8 @@ const IntroBox = styled.section`
    flex-direction: column;
    margin: auto;
    max-width: 90%;
-   padding: 10px;
+   padding: 10px 30px;
    width: 100%;
-
-   h1 {
-      position: relative;
-   }
-`
-
-const CoverHeader = styled.div`
-   position: absolute;
-   right: 0;
-   top: 0;
-   background: var(--black);
-   width: 100%;
-   height: 100%;
-   animation: uncoverHeader 700ms steps(18, jump-start) 1s forwards;
-
-   ::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 25px;
-      opacity: 0;
-      background-color: var(--matrix-green);
-      animation: blink 750ms step-start 0s 3;
-   }
-
-   @keyframes uncoverHeader {
-      0% {
-         width: 100%;
-      }
-      100% {
-         width: 0%;
-      }
-   }
-
-   @keyframes blink {
-      50% {
-         opacity: 1;
-      }
-   }
 `
 
 const ProfileImg = styled.img`
