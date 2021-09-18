@@ -7,7 +7,6 @@ interface ITypedWords {
 }
 
 const TypedWords: FC<ITypedWords> = ({ text, delay }) => {
-  console.log(delay)
    return (
       <Wrapper>
          {text}

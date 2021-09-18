@@ -103,8 +103,12 @@ const IntroBox = styled.section`
    flex-direction: column;
    margin: auto;
    max-width: 90%;
-   padding: 10px 30px;
+   padding: 10px;
    width: 100%;
+
+   ${mediaQueries.laptop`
+      padding: 10px 30px;
+   `}
 `
 
 const ProfileImg = styled.img`
