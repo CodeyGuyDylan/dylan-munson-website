@@ -1,9 +1,10 @@
 import { FC } from 'react'
 import styled from 'styled-components'
+import background from '../assets/code.webp'
 
 const Circuit: FC = () => {
    return (
-      <Lines>
+      <Lines image={background}>
          {/* In id names, m = middle, t = top, r = right, l = left, b = bottom, -n = has a node */}
          <Line id='mlh' top='40vh' left='0px' width='20vw' angle='0' />
          <Line id='mlv' top='40vh' left='20vw' width='15vh' angle='90deg' />
@@ -27,7 +28,6 @@ const Circuit: FC = () => {
 
          <TopNodeOne />
          <TopNodeTwo />
-
          <RightNodeOne />
          <RightNodeTwo />
 
@@ -38,7 +38,7 @@ const Circuit: FC = () => {
 
 export default Circuit
 
-const Lines = styled.div`
+const Lines = styled.div<{ image: string }>`
    height: 100vh;
    left: 0;
    overflow: hidden;
@@ -47,10 +47,24 @@ const Lines = styled.div`
    width: 100vw;
    z-index: -1;
 
+   ::before {
+      background-image: url(${props => props.image});
+      content: '';
+      position: absolute;
+      background-size: cover;
+      top: 0px;
+      right: 0px;
+      left: 0px;
+      bottom: 0px;
+      opacity: 0.03;
+      filter: brightness(500%);
+      box-shadow: 0 0 500px 200px black inset;
+   }
+
    span {
       position: absolute;
       height: 5px;
-      width: 25px;
+      width: 15px;
       background-color: var(--matrix-green);
       border-radius: 30%;
       filter: blur(1.5px);
@@ -64,17 +78,17 @@ const Lines = styled.div`
       }
       70% {
          transform: rotate(0);
-         left: calc(20vw - 12.5px);
+         left: calc(20vw - 7.5px);
          top: calc(40vh - 1.5px);
       }
       71% {
          transform: rotate(90deg);
-         left: calc(20vw - 12.5px);
+         left: calc(20vw - 7.5px);
          top: calc(40vh - 1.5px);
       }
       100% {
          transform: rotate(90deg);
-         left: calc(20vw - 12.5px);
+         left: calc(20vw - 7.5px);
          top: calc(100vh + 25px);
       }
    }
@@ -87,22 +101,22 @@ const Lines = styled.div`
       }
       67% {
          transform: rotate(0);
-         left: calc(20vw - 12.5px);
+         left: calc(20vw - 7.5px);
          top: calc(40vh - 1.5px);
       }
       68% {
          transform: rotate(90deg);
-         left: calc(20vw - 12.5px);
+         left: calc(20vw - 7.5px);
          top: calc(40vh - 1.5px);
       }
       70% {
          transform: rotate(90deg);
-         left: calc(20vw - 12.5px);
+         left: calc(20vw - 7.5px);
          top: calc(55vh - 1.5px);
       }
       71% {
          transform: rotate(0);
-         left: calc(20vw - 12.5px);
+         left: calc(20vw - 7.5px);
          top: calc(55vh - 1.5px);
       }
       82% {
@@ -112,17 +126,17 @@ const Lines = styled.div`
       }
       83% {
          transform: rotate(90deg);
-         left: calc(50vw - 12.5px);
+         left: calc(50vw - 7.5px);
          top: calc(55vh - 1.5px);
       }
       90% {
          transform: rotate(90deg);
-         left: calc(50vw - 12.5px);
+         left: calc(50vw - 7.5px);
          top: calc(85vh - 1.5px);
       }
       91% {
          transform: rotate(0);
-         left: calc(50vw - 12.5px);
+         left: calc(50vw - 7.5px);
          top: calc(85vh - 1.5px);
       }
       100% {
@@ -135,37 +149,37 @@ const Lines = styled.div`
    @keyframes moveTopNodeOne {
       25% {
          top: -27px;
-         left: calc(50vw - 12px);
+         left: calc(50vw - 7.5px);
          transform: rotate(90deg);
       }
       50% {
-         top: 55vh;
-         left: calc(50vw - 12px);
+         top: calc(55vh - 1.5px);
+         left: calc(50vw - 7.5px);
          transform: rotate(90deg);
       }
       51% {
-         top: 55vh;
-         left: calc(50vw - 12px);
+         top: calc(55vh - 1.5px);
+         left: calc(50vw - 7.5px);
          transform: rotate(180deg);
       }
       75% {
-         top: 55vh;
-         left: calc(20vw - 12.5px);
+         top: calc(55vh - 1.5px);
+         left: calc(20vw - 7.5px);
          transform: rotate(180deg);
       }
       76% {
-         top: 55vh;
-         left: calc(20vw - 12.5px);
+         top: calc(55vh - 1.5px);
+         left: calc(20vw - 7.5px);
          transform: rotate(270deg);
       }
       82% {
          top: calc(40vh - 1.5px);
-         left: calc(20vw - 12.5px);
+         left: calc(20vw - 7.5px);
          transform: rotate(270deg);
       }
       83% {
          top: calc(40vh - 1.5px);
-         left: calc(20vw - 12.5px);
+         left: calc(20vw - 7.5px);
          transform: rotate(180deg);
       }
       100% {
@@ -178,100 +192,100 @@ const Lines = styled.div`
    @keyframes moveTopNodeTwo {
       25% {
          top: -27px;
-         left: calc(50vw - 12px);
+         left: calc(50vw - 7.5px);
          transform: rotate(90deg);
       }
       50% {
-         top: 55vh;
-         left: calc(50vw - 12px);
+         top: calc(55vh - 1.5px);
+         left: calc(50vw - 7.5px);
          transform: rotate(90deg);
       }
       51% {
-         top: 55vh;
-         left: calc(50vw - 12px);
+         top: calc(55vh - 1.5px);
+         left: calc(50vw - 7.5px);
          transform: rotate(0);
       }
       63% {
-         top: 55vh;
-         left: calc(60vw - 12.5px);
+         top: calc(55vh - 1.5px);
+         left: calc(60vw - 7.5px);
          transform: rotate(0);
       }
       64% {
-         top: 55vh;
-         left: calc(60vw - 12.5px);
+         top: calc(55vh - 1.5px);
+         left: calc(60vw - 7.5px);
          transform: rotate(-90deg);
       }
       75% {
-         top: 35vh;
-         left: calc(60vw - 12.5px);
+         top: calc(35vh - 1.5px);
+         left: calc(60vw - 7.5px);
          transform: rotate(-90deg);
       }
       76% {
-         top: 35vh;
-         left: calc(60vw - 12.5px);
+         top: calc(35vh - 1.5px);
+         left: calc(60vw - 7.5px);
          transform: rotate(0);
       }
       93% {
-         top: 35vh;
-         left: calc(80vw - 12.5px);
+         top: calc(35vh - 1.5px);
+         left: calc(80vw - 7.5px);
          transform: rotate(0);
       }
       94% {
-         top: 35vh;
-         left: calc(80vw - 12.5px);
+         top: calc(35vh - 1.5px);
+         left: calc(80vw - 7.5px);
          transform: rotate(90deg);
       }
       100% {
-         top: calc(45vh - 12.5px);
-         left: calc(80vw - 12.5px);
+         top: calc(45vh - 7.5px);
+         left: calc(80vw - 7.5px);
          transform: rotate(90deg);
       }
    }
 
    @keyframes moveRightNodeOne {
       10% {
-         top: 35vh;
+         top: calc(35vh - 1.5px);
          left: calc(100vw + 2px);
          transform: rotate(0);
       }
       38% {
-         top: 35vh;
-         left: calc(60vw - 12.5px);
+         top: calc(35vh - 1.5px);
+         left: calc(60vw - 7.5px);
          transform: rotate(0);
       }
       39% {
-         top: 35vh;
-         left: calc(60vw - 12.5px);
+         top: calc(35vh - 1.5px);
+         left: calc(60vw - 7.5px);
          transform: rotate(-90deg);
       }
       48% {
-         top: 55vh;
-         left: calc(60vw - 12.5px);
+         top: calc(55vh - 1.5px);
+         left: calc(60vw - 7.5px);
          transform: rotate(-90deg);
       }
       49% {
-         top: 55vh;
-         left: calc(60vw - 12.5px);
+         top: calc(55vh - 1.5px);
+         left: calc(60vw - 7.5px);
          transform: rotate(0deg);
       }
       80% {
-         top: 55vh;
-         left: calc(20vw - 12.5px);
+         top: calc(55vh - 1.5px);
+         left: calc(20vw - 7.5px);
          transform: rotate(0deg);
       }
       81% {
-         top: 55vh;
-         left: calc(20vw - 12.5px);
+         top: calc(55vh - 1.5px);
+         left: calc(20vw - 7.5px);
          transform: rotate(-90deg);
       }
       93% {
-         top: 80vh;
-         left: calc(20vw - 12.5px);
+         top: calc(80vh - 1.5px);
+         left: calc(20vw - 7.5px);
          transform: rotate(-90deg);
       }
       94% {
-         top: 80vh;
-         left: calc(20vw - 12.5px);
+         top: calc(80vh - 1.5px);
+         left: calc(20vw - 7.5px);
          transform: rotate(0);
       }
       100% {
@@ -283,86 +297,86 @@ const Lines = styled.div`
 
    @keyframes moveRightNodeTwo {
       10% {
-         top: 35vh;
+         top: calc(35vh - 1.5px);
          left: calc(100vw + 2px);
          transform: rotate(0);
       }
       38% {
-         top: 35vh;
-         left: calc(60vw - 12.5px);
+         top: calc(35vh - 1.5px);
+         left: calc(60vw - 7.5px);
          transform: rotate(0);
       }
       39% {
-         top: 35vh;
-         left: calc(60vw - 12.5px);
+         top: calc(35vh - 1.5px);
+         left: calc(60vw - 7.5px);
          transform: rotate(-90deg);
       }
       48% {
-         top: 55vh;
-         left: calc(60vw - 12.5px);
+         top: calc(55vh - 1.5px);
+         left: calc(60vw - 7.5px);
          transform: rotate(-90deg);
       }
       49% {
-         top: 55vh;
-         left: calc(60vw - 12.5px);
+         top: calc(55vh - 1.5px);
+         left: calc(60vw - 7.5px);
          transform: rotate(0deg);
       }
       60% {
-         top: 55vh;
-         left: calc(50vw - 12.5px);
+         top: calc(55vh - 1.5px);
+         left: calc(50vw - 7.5px);
          transform: rotate(0deg);
       }
       61% {
-         top: 55vh;
-         left: calc(50vw - 12.5px);
+         top: calc(55vh - 1.5px);
+         left: calc(50vw - 7.5px);
          transform: rotate(-90deg);
       }
       75% {
-         top: 85vh;
-         left: calc(50vw - 12.5px);
+         top: calc(85vh - 1.5px);
+         left: calc(50vw - 7.5px);
          transform: rotate(-90deg);
       }
       76% {
-         top: 85vh;
-         left: calc(50vw - 12.5px);
+         top: calc(85vh - 1.5px);
+         left: calc(50vw - 7.5px);
          transform: rotate(-180deg);
       }
       100% {
-         top: 85vh;
-         left: calc(90vw - 12.5px);
+         top: calc(85vh - 1.5px);
+         left: calc(90vw - 7.5px);
          transform: rotate(-180deg);
       }
    }
 
    @keyframes moveBottomNodeOne {
       0% {
-         top: calc(100vh + 12.5px);
-         left: calc(20vw - 12px);
+         top: calc(100vh + 7.5px);
+         left: calc(20vw - 7.5px);
          transform: rotate(90deg);
       }
       30% {
-         top: calc(55vh - 12.5px);
-         left: calc(20vw - 12px);
+         top: calc(55vh - 7.5px);
+         left: calc(20vw - 7.5px);
          transform: rotate(90deg);
       }
       31% {
-         top: 55vh;
-         left: calc(20vw - 12px);
+         top: calc(55vh - 1.5px);
+         left: calc(20vw - 7.5px);
          transform: rotate(180deg);
       }
       65% {
-         top: 55vh;
-         left: calc(50vw - 12px);
+         top: calc(55vh - 1.5px);
+         left: calc(50vw - 7.5px);
          transform: rotate(180deg);
       }
       66% {
-         top: 55vh;
-         left: calc(50vw - 12px);
+         top: calc(55vh - 1.5px);
+         left: calc(50vw - 7.5px);
          transform: rotate(90deg);
       }
       100% {
          top: -27px;
-         left: calc(50vw - 12px);
+         left: calc(50vw - 7.5px);
          transform: rotate(90deg);
       }
    }
@@ -413,7 +427,7 @@ const LeftNodeTwo = styled.span`
 
 const TopNodeOne = styled.span`
    top: -27px;
-   left: calc(50vw - 12px);
+   left: calc(50vw - 7.5px);
    transform: rotate(90deg);
 
    animation: moveTopNodeOne 10s linear 0s infinite;
@@ -421,29 +435,29 @@ const TopNodeOne = styled.span`
 
 const TopNodeTwo = styled.span`
    top: -27px;
-   left: calc(50vw - 12px);
+   left: calc(50vw - 7.5px);
    transform: rotate(90deg);
 
    animation: moveTopNodeTwo 10s linear 5s infinite;
 `
 
 const RightNodeOne = styled.span`
-   top: 35vh;
+   top: calc(35vh - 1.5px);
    left: calc(100vw + 2px);
 
    animation: moveRightNodeOne 13s linear 3s infinite;
 `
 
 const RightNodeTwo = styled.span`
-   top: 35vh;
+   top: calc(35vh - 1.5px);
    left: calc(100vw + 2px);
 
    animation: moveRightNodeTwo 15s linear 6s infinite;
 `
 
 const BottomNodeOne = styled.span`
-   top: calc(100vh + 12.5px);
-   left: calc(20vw - 12px);
+   top: calc(100vh + 7.5px);
+   left: calc(20vw - 7.5px);
    transform: rotate(90deg);
 
    animation: moveBottomNodeOne 10s linear 3s infinite;
