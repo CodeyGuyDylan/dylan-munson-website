@@ -56,13 +56,13 @@ const Home: FC = () => {
                         <h2 key={id} className={blip === i ? 'blip' : ''}>
                            {i === 0 ? (
                               <>
-                                 <TypedWords delay={2} text={`${name}:`} />
+                                 <TypedWords delay={1.8} text={`${name}:`} />
                                  <br />
-                                 <TypedWords delay={2.5} text={value} />
+                                 <TypedWords delay={2.6} text={value} />
                               </>
                            ) : (
                               <TypedWords
-                                 delay={2.5 + i * 0.5}
+                                 delay={2.6 + i * 0.8}
                                  text={`${name}: ${value}`}
                               />
                            )}
