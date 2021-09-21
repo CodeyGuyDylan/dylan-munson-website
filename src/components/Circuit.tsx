@@ -2,7 +2,11 @@ import { FC, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import background from '../assets/code.webp'
 
-const Circuit: FC = () => {
+interface ICircuit {
+   isOpening: boolean
+}
+
+const Circuit: FC<ICircuit> = ({ isOpening }) => {
    const [isResizing, setIsResizing] = useState(false)
 
    // Resets circuit animations on window resize, with 150ms buffer
@@ -25,42 +29,86 @@ const Circuit: FC = () => {
 
    return (
       <>
-         {!isResizing && <Lines image={background}>
-            {/* In id names, m = middle, t = top, r = right, l = left, b = bottom, -n = has a node */}
-            <Line id='mlh' top='40vh' left='0px' width='20vw' angle='0' />
-            <Line id='mlv' top='40vh' left='20vw' width='15vh' angle='90deg' />
-            <Line id='mmv' top='55vh' left='20vw' width='40vw' angle='0' />
-            <Line id='mbv' top='55vh' left='20vw' width='45vh' angle='90deg' />
-            <Line id='mrv' top='55vh' left='60vw' width='20vh' angle='270deg' />
-            <Line id='mrh' top='35vh' left='60vw' width='40vw' angle='0' />
-            <Line id='mtv' top='55vh' left='50vw' width='55vh' angle='270deg' />
-            <Line id='mrv-n' top='35vh' left='80vw' width='10vh' angle='90deg' />
-            <Line id='mbv' top='55vh' left='50vw' width='30vh' angle='90deg' />
-            <Line id='brh-n' top='85vh' left='50vw' width='40vw' angle='0' />
-            <Line id='blh-n' top='80vh' left='20vw' width='5vw' angle='180deg' />
+         {!isResizing && (
+            <Lines isOpening={isOpening} image={background}>
+               {/* In id names, m = middle, t = top, r = right, l = left, b = bottom, -n = has a node */}
+               <Line id='mlh' top='40vh' left='0px' width='20vw' angle='0' />
+               <Line
+                  id='mlv'
+                  top='40vh'
+                  left='20vw'
+                  width='15vh'
+                  angle='90deg'
+               />
+               <Line id='mmv' top='55vh' left='20vw' width='40vw' angle='0' />
+               <Line
+                  id='mbv'
+                  top='55vh'
+                  left='20vw'
+                  width='45vh'
+                  angle='90deg'
+               />
+               <Line
+                  id='mrv'
+                  top='55vh'
+                  left='60vw'
+                  width='20vh'
+                  angle='270deg'
+               />
+               <Line id='mrh' top='35vh' left='60vw' width='40vw' angle='0' />
+               <Line
+                  id='mtv'
+                  top='55vh'
+                  left='50vw'
+                  width='55vh'
+                  angle='270deg'
+               />
+               <Line
+                  id='mrv-n'
+                  top='35vh'
+                  left='80vw'
+                  width='10vh'
+                  angle='90deg'
+               />
+               <Line
+                  id='mbv'
+                  top='55vh'
+                  left='50vw'
+                  width='30vh'
+                  angle='90deg'
+               />
+               <Line id='brh-n' top='85vh' left='50vw' width='40vw' angle='0' />
+               <Line
+                  id='blh-n'
+                  top='80vh'
+                  left='20vw'
+                  width='5vw'
+                  angle='180deg'
+               />
 
-            {/* In id names, m = middle, t = top, r = right, l = left, b = bottom, n = node */}
-            <Circle id='mrn' top='44vh' left='calc(80vw - 5px)' />
-            <Circle id='bln' top='calc(80vh - 5px)' left='15vw' />
-            <Circle id='brn' top='calc(85vh - 5px)' left='90vw' />
+               {/* In id names, m = middle, t = top, r = right, l = left, b = bottom, n = node */}
+               <Circle id='mrn' top='44vh' left='calc(80vw - 5px)' />
+               <Circle id='bln' top='calc(80vh - 5px)' left='15vw' />
+               <Circle id='brn' top='calc(85vh - 5px)' left='90vw' />
 
-            <LeftNodeOne />
-            <LeftNodeTwo />
+               <LeftNodeOne />
+               <LeftNodeTwo />
 
-            <TopNodeOne />
-            <TopNodeTwo />
-            <RightNodeOne />
-            <RightNodeTwo />
+               <TopNodeOne />
+               <TopNodeTwo />
+               <RightNodeOne />
+               <RightNodeTwo />
 
-            <BottomNodeOne />
-         </Lines>}
-         </>
+               <BottomNodeOne />
+            </Lines>
+         )}
+      </>
    )
 }
 
 export default Circuit
 
-const Lines = styled.div<{ image: string }>`
+const Lines = styled.div<{ image: string; isOpening: boolean }>`
    height: 100vh;
    left: 0;
    overflow: hidden;
@@ -81,6 +129,14 @@ const Lines = styled.div<{ image: string }>`
       opacity: 0.05;
       filter: brightness(500%);
       box-shadow: 0 0 500px 200px black inset;
+      transition: opacity 500ms ease 200ms;
+
+      ${props =>
+         props.isOpening
+            ? `
+         opacity: 0;
+      `
+            : null};
    }
 
    span {

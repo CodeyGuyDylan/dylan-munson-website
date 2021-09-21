@@ -86,17 +86,8 @@ const GlobalStyle = createGlobalStyle`
   `}
 
   // Classes
-  .blip {
-    animation: blip 100ms step-start;
-  }
 
   // Animations
-
-  @keyframes blip {
-    50% {
-      color: var(--dark-green);
-    }
-  }
 
   @keyframes blinker {
       50% {

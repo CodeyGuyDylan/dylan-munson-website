@@ -4,13 +4,14 @@ import styled from 'styled-components'
 interface ITypedWords {
    text: string
    delay: number
+   className?: string
 }
 
-const TypedWords: FC<ITypedWords> = ({ text, delay }) => {
+const TypedWords: FC<ITypedWords> = ({ className, text, delay }) => {
    return (
       <Wrapper>
          {text}
-         <Cover delay={delay} letters={text.length} />
+         <Cover className={className} delay={delay} letters={text.length} />
       </Wrapper>
    )
 }
@@ -41,7 +42,7 @@ const Cover = styled.span<{ letters: number; delay: number }>`
       width: 25px;
       opacity: 0;
       background-color: var(--matrix-green);
-      animation: blink 500ms step-start ${props => props.delay}s forwards;
+      animation: blink 550ms step-start ${props => props.delay - 0.4}s 2;
    }
 
    @keyframes uncoverHeader {

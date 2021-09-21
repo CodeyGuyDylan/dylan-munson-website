@@ -1,6 +1,7 @@
 // Libraries
-import { FC, Fragment, useEffect, useState } from 'react'
+import { FC, useState } from 'react'
 import styled from 'styled-components'
+import { useHistory } from 'react-router-dom'
 
 // Assets
 import Profile from '../assets/placeholder-headshot.webp'
@@ -22,23 +23,17 @@ const attrs = [
 ]
 
 const Home: FC = () => {
-   const [blip, setBlip] = useState<number>(0)
+   const history = useHistory()
+   const [isOpening, setIsOpening] = useState(false)
 
-   useEffect(() => {
-      const randomizeBlip = setInterval(() => {
-         const rand = Math.floor(Math.random() * attrs.length)
-
-         setBlip(rand)
-      }, 2500)
-
-      return () => {
-         clearInterval(randomizeBlip)
-      }
-   }, [])
+   const openFile = () => {
+      setIsOpening(true)
+     // history.push('/file')
+   }
 
    return (
       <HomeWrapper>
-         <Circuit />
+         <Circuit isOpening={isOpening} />
 
          <IntroBox>
             <h1>
@@ -53,7 +48,7 @@ const Home: FC = () => {
                      const { id, name, value } = attr
 
                      return (
-                        <h2 key={id} className={blip === i ? 'blip' : ''}>
+                        <h2 key={id}>
                            {i === 0 ? (
                               <>
                                  <TypedWords delay={1.8} text={`${name}:`} />
@@ -72,7 +67,7 @@ const Home: FC = () => {
                </Attributes>
             </Details>
 
-            <OpenFile>Open File</OpenFile>
+            <OpenFile onClick={openFile}>Open File</OpenFile>
          </IntroBox>
       </HomeWrapper>
    )
