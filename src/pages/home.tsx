@@ -13,15 +13,6 @@ import TypedWords from '../components/TypedWords'
 // Helper
 import mediaQueries from '../helper/mediaQueries'
 
-const attrs = [
-   { id: 1, name: 'Profession', value: 'Front-End Web Developer' },
-   { id: 2, name: 'Age', value: '25' },
-   { id: 3, name: 'Height', value: 'Tall' },
-   { id: 4, name: 'Hair', value: 'Brown' },
-   { id: 5, name: 'Eyes', value: 'Yes' },
-   { id: 6, name: 'Alignment', value: 'Lawful Good' },
-]
-
 const Home: FC = () => {
    const history = useHistory()
    const [isOpening, setIsOpening] = useState(false)
@@ -30,6 +21,24 @@ const Home: FC = () => {
    const theme = {
       isOpening,
    }
+
+   const attrs = isOpening
+      ? [
+           { id: 1, name: '', value: '' },
+           { id: 2, name: '', value: '' },
+           { id: 3, name: '', value: '' },
+           { id: 4, name: '', value: '' },
+           { id: 5, name: '', value: '' },
+           { id: 6, name: 'Alignment:', value: 'Chaotic Good' },
+        ]
+      : [
+           { id: 1, name: 'Profession:', value: 'Front-End Web Developer' },
+           { id: 2, name: 'Age:', value: '25' },
+           { id: 3, name: 'Height:', value: 'Tall' },
+           { id: 4, name: 'Hair:', value: 'Brown' },
+           { id: 5, name: 'Eyes:', value: 'Yes' },
+           { id: 6, name: 'Alignment:', value: 'Lawful Good' },
+        ]
 
    // Sets local storage to show user has watched animation and skips over the typing animation if button was clicked before it was finished
    const openFile = () => {
@@ -62,6 +71,9 @@ const Home: FC = () => {
       }
    }, [])
 
+   const header = isOpening ? '' : 'File: Dylan Munson'
+   const typedWordsStyle = isOpening ? { color: 'red' } : {}
+
    return (
       <ThemeProvider theme={theme}>
          <HomeWrapper>
@@ -69,7 +81,7 @@ const Home: FC = () => {
 
             <IntroBox>
                <h1>
-                  <TypedWords delay={1} text='File: Dylan Munson' />
+                  <TypedWords delay={1} text={header} />
                </h1>
 
                <Details>
@@ -83,14 +95,15 @@ const Home: FC = () => {
                            <h2 key={id}>
                               {i === 0 ? (
                                  <>
-                                    <TypedWords delay={1.8} text={`${name}:`} />
+                                    <TypedWords delay={1.8} text={`${name}`} />
                                     <br />
                                     <TypedWords delay={2.6} text={value} />
                                  </>
                               ) : (
                                  <TypedWords
+                                    style={typedWordsStyle}
                                     delay={2.6 + i * 0.8}
-                                    text={`${name}: ${value}`}
+                                    text={`${name} ${value}`}
                                  />
                               )}
                            </h2>
@@ -99,7 +112,9 @@ const Home: FC = () => {
                   </Attributes>
                </Details>
 
-               <OpenFile onClick={openFile}>Open File</OpenFile>
+               {!isOpening && <OpenFile onClick={openFile}>Open File</OpenFile>}
+
+               {isOpening && <Opening>Opening</Opening>}
             </IntroBox>
          </HomeWrapper>
       </ThemeProvider>
@@ -107,6 +122,39 @@ const Home: FC = () => {
 }
 
 export default Home
+
+const Opening = styled.span`
+   position: relative;
+   font-size: var(--heading-two);
+   color: red;
+   padding: calc(0.5em + 5px);
+   margin-bottom: 10px;
+
+   ${mediaQueries.laptop`
+      margin: 2rem 0;
+   `}
+
+   ::after {
+      content: '';
+
+      animation: ellipsis 1.5s linear 0s infinite;
+   }
+
+   @keyframes ellipsis {
+      0% {
+         content: '';
+      }
+      33% {
+         content: '.';
+      }
+      66% {
+         content: '..';
+      }
+      100% {
+         content: '...';
+      }
+   }
+`
 
 const HomeWrapper = styled.main`
    display: flex;
@@ -134,6 +182,12 @@ const IntroBox = styled.section`
    padding: 10px;
    width: 100%;
 
+   ${props =>
+      props.theme.isOpening &&
+      `
+      border: 5px solid red;
+   `}
+
    ${mediaQueries.laptop`
       padding: 10px 30px;
    `}
@@ -146,6 +200,12 @@ const ProfileImg = styled.img`
    max-width: 100%;
    object-fit: cover;
    width: 100%;
+
+   ${props =>
+      props.theme.isOpening &&
+      `
+      opacity: 0;
+   `}
 
    ${mediaQueries.laptop`
       margin: 1rem 0 0 0;

@@ -139,7 +139,7 @@ const Lines = styled.div<{ image: string }>`
       height: 6px;
       width: 6px;
       background-color: var(--matrix-green);
-      filter: blur(3px);
+      filter: blur(1.5px);
       border-radius: 50%;
 
       ${props => props.theme.isOpening && `opacity: 0;`};
@@ -242,11 +242,11 @@ const Lines = styled.div<{ image: string }>`
          left: calc(60vw - 3px);
       }
       75% {
-         top: calc(35vh - 1.5px);
+         top: calc(35vh - 2px);
          left: calc(60vw - 3px);
       }
       93% {
-         top: calc(35vh - 1.5px);
+         top: calc(35vh - 2px);
          left: calc(80vw - 3px);
       }
       100% {
@@ -257,11 +257,11 @@ const Lines = styled.div<{ image: string }>`
 
    @keyframes moveRightNodeOne {
       10% {
-         top: calc(35vh - 1.5px);
+         top: calc(35vh - 2px);
          left: calc(100vw + 2px);
       }
       38% {
-         top: calc(35vh - 1.5px);
+         top: calc(35vh - 2px);
          left: calc(60vw - 3px);
       }
       48% {
@@ -284,11 +284,11 @@ const Lines = styled.div<{ image: string }>`
 
    @keyframes moveRightNodeTwo {
       10% {
-         top: calc(35vh - 1.5px);
+         top: calc(35vh - 2px);
          left: calc(100vw + 2px);
       }
       38% {
-         top: calc(35vh - 1.5px);
+         top: calc(35vh - 2px);
          left: calc(60vw - 3px);
       }
       48% {
@@ -311,7 +311,7 @@ const Lines = styled.div<{ image: string }>`
 
    @keyframes moveBottomNodeOne {
       0% {
-         top: calc(100vh + 7.5px);
+         top: calc(100vh + 3px);
          left: calc(20vw - 3px);
       }
       30% {
@@ -444,21 +444,21 @@ const TopNodeTwo = styled.span`
 `
 
 const RightNodeOne = styled.span`
-   top: calc(35vh - 1.5px);
+   top: calc(35vh - 2px);
    left: calc(100vw + 2px);
 
    animation: moveRightNodeOne 13s linear 3s infinite;
 `
 
 const RightNodeTwo = styled.span`
-   top: calc(35vh - 1.5px);
+   top: calc(35vh - 2px);
    left: calc(100vw + 2px);
 
    animation: moveRightNodeTwo 15s linear 6s infinite;
 `
 
 const BottomNodeOne = styled.span`
-   top: calc(100vh + 7.5px);
+   top: calc(100vh + 3px);
    left: calc(20vw - 3px);
    transform: rotate(90deg);
 

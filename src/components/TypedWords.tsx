@@ -1,13 +1,14 @@
 import { FC, useEffect, useState } from 'react'
-import styled from 'styled-components'
+import styled, { CSSProperties } from 'styled-components'
 
 interface ITypedWords {
    text: string
    delay: number
    className?: string
+   style?: CSSProperties
 }
 
-const TypedWords: FC<ITypedWords> = ({ className, text, delay }) => {
+const TypedWords: FC<ITypedWords> = ({ style, className, text, delay }) => {
    const [cancelAnimation, setCancelAnimation] = useState<boolean>(false)
 
    // Checks to see if user has already seen the typing animation, skips the animations if they
@@ -20,7 +21,7 @@ const TypedWords: FC<ITypedWords> = ({ className, text, delay }) => {
    }, [])
 
    return (
-      <Wrapper>
+      <Wrapper style={style}>
          {text}
          <Cover
             cancel={cancelAnimation}
