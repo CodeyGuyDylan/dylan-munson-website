@@ -1,6 +1,6 @@
 // Libraries
-import { FC, useState } from 'react'
-import styled from 'styled-components'
+import { FC, useEffect, useState } from 'react'
+import styled, { ThemeProvider } from 'styled-components'
 import { useHistory } from 'react-router-dom'
 
 // Assets
@@ -26,50 +26,83 @@ const Home: FC = () => {
    const history = useHistory()
    const [isOpening, setIsOpening] = useState(false)
 
-   const openFile = () => {
-      setIsOpening(true)
-     // history.push('/file')
+   // Allows all styled components to know if the user has clicked the open file button
+   const theme = {
+      isOpening,
    }
 
+   // Sets local storage to show user has watched animation and skips over the typing animation if button was clicked before it was finished
+   const openFile = () => {
+      skipAnimation()
+      setIsOpening(true)
+
+      // Sends user to file page after animations have run
+      setTimeout(() => {
+         history.push('/file')
+      }, 3000)
+   }
+
+   const skipAnimation = () => {
+      localStorage.setItem('watched_typing_animation', 'yes')
+   }
+
+   // Sets local storage to show user has watched animation if they've stayed on the page for the full duration
+   useEffect(() => {
+      let visited: ReturnType<typeof setTimeout>
+      const hasVisited = localStorage.getItem('watched_typing_animation')
+
+      if (hasVisited !== 'yes') {
+         visited = setTimeout(() => {
+            skipAnimation()
+         }, 7500)
+      }
+
+      return () => {
+         clearTimeout(visited)
+      }
+   }, [])
+
    return (
-      <HomeWrapper>
-         <Circuit isOpening={isOpening} />
+      <ThemeProvider theme={theme}>
+         <HomeWrapper>
+            <Circuit />
 
-         <IntroBox>
-            <h1>
-               <TypedWords delay={1} text='File: Dylan Munson' />
-            </h1>
+            <IntroBox>
+               <h1>
+                  <TypedWords delay={1} text='File: Dylan Munson' />
+               </h1>
 
-            <Details>
-               <ProfileImg src={Profile} alt='dylan munson headshot' />
+               <Details>
+                  <ProfileImg src={Profile} alt='dylan munson headshot' />
 
-               <Attributes>
-                  {attrs.map((attr, i) => {
-                     const { id, name, value } = attr
+                  <Attributes>
+                     {attrs.map((attr, i) => {
+                        const { id, name, value } = attr
 
-                     return (
-                        <h2 key={id}>
-                           {i === 0 ? (
-                              <>
-                                 <TypedWords delay={1.8} text={`${name}:`} />
-                                 <br />
-                                 <TypedWords delay={2.6} text={value} />
-                              </>
-                           ) : (
-                              <TypedWords
-                                 delay={2.6 + i * 0.8}
-                                 text={`${name}: ${value}`}
-                              />
-                           )}
-                        </h2>
-                     )
-                  })}
-               </Attributes>
-            </Details>
+                        return (
+                           <h2 key={id}>
+                              {i === 0 ? (
+                                 <>
+                                    <TypedWords delay={1.8} text={`${name}:`} />
+                                    <br />
+                                    <TypedWords delay={2.6} text={value} />
+                                 </>
+                              ) : (
+                                 <TypedWords
+                                    delay={2.6 + i * 0.8}
+                                    text={`${name}: ${value}`}
+                                 />
+                              )}
+                           </h2>
+                        )
+                     })}
+                  </Attributes>
+               </Details>
 
-            <OpenFile onClick={openFile}>Open File</OpenFile>
-         </IntroBox>
-      </HomeWrapper>
+               <OpenFile onClick={openFile}>Open File</OpenFile>
+            </IntroBox>
+         </HomeWrapper>
+      </ThemeProvider>
    )
 }
 
@@ -116,6 +149,7 @@ const ProfileImg = styled.img`
 
    ${mediaQueries.laptop`
       margin: 1rem 0 0 0;
+      min-width: 300px;
       width: 300px;
       align-self: flex-start;
    `}

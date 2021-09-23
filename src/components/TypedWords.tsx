@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 interface ITypedWords {
@@ -8,10 +8,26 @@ interface ITypedWords {
 }
 
 const TypedWords: FC<ITypedWords> = ({ className, text, delay }) => {
+   const [cancelAnimation, setCancelAnimation] = useState<boolean>(false)
+
+   // Checks to see if user has already seen the typing animation, skips the animations if they
+   useEffect(() => {
+      const visited = localStorage.getItem('watched_typing_animation')
+
+      if (visited === 'yes') {
+         setCancelAnimation(true)
+      }
+   }, [])
+
    return (
       <Wrapper>
          {text}
-         <Cover className={className} delay={delay} letters={text.length} />
+         <Cover
+            cancel={cancelAnimation}
+            className={className}
+            delay={delay}
+            letters={text.length}
+         />
       </Wrapper>
    )
 }
@@ -23,14 +39,18 @@ const Wrapper = styled.div`
    display: inline-block;
 `
 
-const Cover = styled.span<{ letters: number; delay: number }>`
+const Cover = styled.span<{ letters: number; delay: number; cancel: boolean }>`
    position: absolute;
    right: 0;
    top: 0;
    background: var(--black);
-   width: 100%;
+   // Sets width of cover to 0 if file is being opened or they've already seen the animation
+   width: ${props => (props.cancel || props.theme.isOpening ? '0%' : '100%;')};
    height: 100%;
-   animation: uncoverHeader 500ms steps(${props => props.letters}, jump-start)
+   // Sets animation to none if file is being opened or they've already seen the animation
+   animation: ${props =>
+         props.cancel || props.theme.isOpening ? '' : 'uncoverHeader'}
+      500ms steps(${props => props.letters}, jump-start)
       ${props => props.delay}s forwards;
 
    ::before {
@@ -42,7 +62,10 @@ const Cover = styled.span<{ letters: number; delay: number }>`
       width: 25px;
       opacity: 0;
       background-color: var(--matrix-green);
-      animation: blink 550ms step-start ${props => props.delay - 0.4}s 2;
+      // Sets animation to none if file is being opened or they've already seen the animation
+      animation: ${props =>
+            props.cancel || props.theme.isOpening ? '' : 'blink'}
+         550ms step-start ${props => props.delay - 0.4}s 2;
    }
 
    @keyframes uncoverHeader {

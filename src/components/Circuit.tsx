@@ -2,11 +2,7 @@ import { FC, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import background from '../assets/code.webp'
 
-interface ICircuit {
-   isOpening: boolean
-}
-
-const Circuit: FC<ICircuit> = ({ isOpening }) => {
+const Circuit: FC = () => {
    const [isResizing, setIsResizing] = useState(false)
 
    // Resets circuit animations on window resize, with 150ms buffer
@@ -30,7 +26,7 @@ const Circuit: FC<ICircuit> = ({ isOpening }) => {
    return (
       <>
          {!isResizing && (
-            <Lines isOpening={isOpening} image={background}>
+            <Lines image={background}>
                {/* In id names, m = middle, t = top, r = right, l = left, b = bottom, -n = has a node */}
                <Line id='mlh' top='40vh' left='0px' width='20vw' angle='0' />
                <Line
@@ -108,7 +104,7 @@ const Circuit: FC<ICircuit> = ({ isOpening }) => {
 
 export default Circuit
 
-const Lines = styled.div<{ image: string; isOpening: boolean }>`
+const Lines = styled.div<{ image: string }>`
    height: 100vh;
    left: 0;
    overflow: hidden;
@@ -116,6 +112,10 @@ const Lines = styled.div<{ image: string; isOpening: boolean }>`
    top: 0;
    width: 100vw;
    z-index: -1;
+
+   ${props =>
+      props.theme.isOpening &&
+      `animation: glitch 200ms step-start 0s forwards;`};
 
    ::before {
       background-image: url(${props => props.image});
@@ -131,192 +131,127 @@ const Lines = styled.div<{ image: string; isOpening: boolean }>`
       box-shadow: 0 0 500px 200px black inset;
       transition: opacity 500ms ease 200ms;
 
-      ${props =>
-         props.isOpening
-            ? `
-         opacity: 0;
-      `
-            : null};
+      ${props => props.theme.isOpening && `opacity: 0;`};
    }
 
    span {
       position: absolute;
-      height: 5px;
-      width: 15px;
+      height: 6px;
+      width: 6px;
       background-color: var(--matrix-green);
-      border-radius: 30%;
-      filter: blur(1.5px);
+      filter: blur(3px);
+      border-radius: 50%;
+
+      ${props => props.theme.isOpening && `opacity: 0;`};
+   }
+
+   @keyframes glitch {
+      0% {
+         transform: skew(0);
+      }
+      50% {
+         transform: skew(30deg);
+      }
+      70% {
+         transform: skew(0);
+      }
+      85% {
+         transform: skew(30deg);
+      }
+      100% {
+         transform: skew(0);
+      }
    }
 
    @keyframes moveLeftNodeOne {
       50% {
-         transform: rotate(0);
-         left: -27px;
+         left: -18px;
          top: calc(40vh - 1.5px);
       }
       70% {
-         transform: rotate(0);
-         left: calc(20vw - 7.5px);
-         top: calc(40vh - 1.5px);
-      }
-      71% {
-         transform: rotate(90deg);
-         left: calc(20vw - 7.5px);
+         left: calc(20vw - 3px);
          top: calc(40vh - 1.5px);
       }
       100% {
-         transform: rotate(90deg);
-         left: calc(20vw - 7.5px);
-         top: calc(100vh + 25px);
+         left: calc(20vw - 3px);
+         top: calc(100vh + 16px);
       }
    }
 
    @keyframes moveLeftNodeTwo {
       62% {
-         transform: rotate(0);
-         left: -27px;
+         left: -18px;
          top: calc(40vh - 1.5px);
       }
       67% {
-         transform: rotate(0);
-         left: calc(20vw - 7.5px);
-         top: calc(40vh - 1.5px);
-      }
-      68% {
-         transform: rotate(90deg);
-         left: calc(20vw - 7.5px);
+         left: calc(20vw - 3px);
          top: calc(40vh - 1.5px);
       }
       70% {
-         transform: rotate(90deg);
-         left: calc(20vw - 7.5px);
-         top: calc(55vh - 1.5px);
-      }
-      71% {
-         transform: rotate(0);
-         left: calc(20vw - 7.5px);
+         left: calc(20vw - 3px);
          top: calc(55vh - 1.5px);
       }
       82% {
-         transform: rotate(0);
          left: 50vw;
          top: calc(55vh - 1.5px);
       }
-      83% {
-         transform: rotate(90deg);
-         left: calc(50vw - 7.5px);
-         top: calc(55vh - 1.5px);
-      }
       90% {
-         transform: rotate(90deg);
-         left: calc(50vw - 7.5px);
-         top: calc(85vh - 1.5px);
-      }
-      91% {
-         transform: rotate(0);
-         left: calc(50vw - 7.5px);
+         left: calc(50vw - 3px);
          top: calc(85vh - 1.5px);
       }
       100% {
-         transform: rotate(0);
-         left: calc(90vw - 25px);
+         left: calc(90vw - 16px);
          top: calc(85vh - 1.5px);
       }
    }
 
    @keyframes moveTopNodeOne {
       25% {
-         top: -27px;
-         left: calc(50vw - 7.5px);
-         transform: rotate(90deg);
+         top: -18px;
+         left: calc(50vw - 3px);
       }
       50% {
          top: calc(55vh - 1.5px);
-         left: calc(50vw - 7.5px);
-         transform: rotate(90deg);
-      }
-      51% {
-         top: calc(55vh - 1.5px);
-         left: calc(50vw - 7.5px);
-         transform: rotate(180deg);
+         left: calc(50vw - 3px);
       }
       75% {
          top: calc(55vh - 1.5px);
-         left: calc(20vw - 7.5px);
-         transform: rotate(180deg);
-      }
-      76% {
-         top: calc(55vh - 1.5px);
-         left: calc(20vw - 7.5px);
-         transform: rotate(270deg);
+         left: calc(20vw - 3px);
       }
       82% {
          top: calc(40vh - 1.5px);
-         left: calc(20vw - 7.5px);
-         transform: rotate(270deg);
-      }
-      83% {
-         top: calc(40vh - 1.5px);
-         left: calc(20vw - 7.5px);
-         transform: rotate(180deg);
+         left: calc(20vw - 3px);
       }
       100% {
-         transform: rotate(180deg);
-         left: -27px;
+         left: -18px;
          top: calc(40vh - 1.5px);
       }
    }
 
    @keyframes moveTopNodeTwo {
       25% {
-         top: -27px;
-         left: calc(50vw - 7.5px);
-         transform: rotate(90deg);
+         top: -18px;
+         left: calc(50vw - 3px);
       }
       50% {
          top: calc(55vh - 1.5px);
-         left: calc(50vw - 7.5px);
-         transform: rotate(90deg);
-      }
-      51% {
-         top: calc(55vh - 1.5px);
-         left: calc(50vw - 7.5px);
-         transform: rotate(0);
+         left: calc(50vw - 3px);
       }
       63% {
          top: calc(55vh - 1.5px);
-         left: calc(60vw - 7.5px);
-         transform: rotate(0);
-      }
-      64% {
-         top: calc(55vh - 1.5px);
-         left: calc(60vw - 7.5px);
-         transform: rotate(-90deg);
+         left: calc(60vw - 3px);
       }
       75% {
          top: calc(35vh - 1.5px);
-         left: calc(60vw - 7.5px);
-         transform: rotate(-90deg);
-      }
-      76% {
-         top: calc(35vh - 1.5px);
-         left: calc(60vw - 7.5px);
-         transform: rotate(0);
+         left: calc(60vw - 3px);
       }
       93% {
          top: calc(35vh - 1.5px);
-         left: calc(80vw - 7.5px);
-         transform: rotate(0);
-      }
-      94% {
-         top: calc(35vh - 1.5px);
-         left: calc(80vw - 7.5px);
-         transform: rotate(90deg);
+         left: calc(80vw - 3px);
       }
       100% {
-         top: calc(45vh - 7.5px);
-         left: calc(80vw - 7.5px);
-         transform: rotate(90deg);
+         top: calc(45vh - 3px);
+         left: calc(80vw - 3px);
       }
    }
 
@@ -324,52 +259,26 @@ const Lines = styled.div<{ image: string; isOpening: boolean }>`
       10% {
          top: calc(35vh - 1.5px);
          left: calc(100vw + 2px);
-         transform: rotate(0);
       }
       38% {
          top: calc(35vh - 1.5px);
-         left: calc(60vw - 7.5px);
-         transform: rotate(0);
-      }
-      39% {
-         top: calc(35vh - 1.5px);
-         left: calc(60vw - 7.5px);
-         transform: rotate(-90deg);
+         left: calc(60vw - 3px);
       }
       48% {
          top: calc(55vh - 1.5px);
-         left: calc(60vw - 7.5px);
-         transform: rotate(-90deg);
-      }
-      49% {
-         top: calc(55vh - 1.5px);
-         left: calc(60vw - 7.5px);
-         transform: rotate(0deg);
+         left: calc(60vw - 3px);
       }
       80% {
          top: calc(55vh - 1.5px);
-         left: calc(20vw - 7.5px);
-         transform: rotate(0deg);
-      }
-      81% {
-         top: calc(55vh - 1.5px);
-         left: calc(20vw - 7.5px);
-         transform: rotate(-90deg);
+         left: calc(20vw - 3px);
       }
       93% {
          top: calc(80vh - 1.5px);
-         left: calc(20vw - 7.5px);
-         transform: rotate(-90deg);
-      }
-      94% {
-         top: calc(80vh - 1.5px);
-         left: calc(20vw - 7.5px);
-         transform: rotate(0);
+         left: calc(20vw - 3px);
       }
       100% {
          top: calc(80vh - 1.5px);
          left: 15vw;
-         transform: rotate(0);
       }
    }
 
@@ -377,85 +286,84 @@ const Lines = styled.div<{ image: string; isOpening: boolean }>`
       10% {
          top: calc(35vh - 1.5px);
          left: calc(100vw + 2px);
-         transform: rotate(0);
       }
       38% {
          top: calc(35vh - 1.5px);
-         left: calc(60vw - 7.5px);
-         transform: rotate(0);
-      }
-      39% {
-         top: calc(35vh - 1.5px);
-         left: calc(60vw - 7.5px);
-         transform: rotate(-90deg);
+         left: calc(60vw - 3px);
       }
       48% {
          top: calc(55vh - 1.5px);
-         left: calc(60vw - 7.5px);
-         transform: rotate(-90deg);
-      }
-      49% {
-         top: calc(55vh - 1.5px);
-         left: calc(60vw - 7.5px);
-         transform: rotate(0deg);
+         left: calc(60vw - 3px);
       }
       60% {
          top: calc(55vh - 1.5px);
-         left: calc(50vw - 7.5px);
-         transform: rotate(0deg);
-      }
-      61% {
-         top: calc(55vh - 1.5px);
-         left: calc(50vw - 7.5px);
-         transform: rotate(-90deg);
+         left: calc(50vw - 3px);
       }
       75% {
          top: calc(85vh - 1.5px);
-         left: calc(50vw - 7.5px);
-         transform: rotate(-90deg);
-      }
-      76% {
-         top: calc(85vh - 1.5px);
-         left: calc(50vw - 7.5px);
-         transform: rotate(-180deg);
+         left: calc(50vw - 3px);
       }
       100% {
          top: calc(85vh - 1.5px);
-         left: calc(90vw - 7.5px);
-         transform: rotate(-180deg);
+         left: calc(90vw - 3px);
       }
    }
 
    @keyframes moveBottomNodeOne {
       0% {
          top: calc(100vh + 7.5px);
-         left: calc(20vw - 7.5px);
-         transform: rotate(90deg);
+         left: calc(20vw - 3px);
       }
       30% {
-         top: calc(55vh - 7.5px);
-         left: calc(20vw - 7.5px);
-         transform: rotate(90deg);
-      }
-      31% {
-         top: calc(55vh - 1.5px);
-         left: calc(20vw - 7.5px);
-         transform: rotate(180deg);
+         top: calc(55vh - 3px);
+         left: calc(20vw - 3px);
       }
       65% {
          top: calc(55vh - 1.5px);
-         left: calc(50vw - 7.5px);
-         transform: rotate(180deg);
-      }
-      66% {
-         top: calc(55vh - 1.5px);
-         left: calc(50vw - 7.5px);
-         transform: rotate(90deg);
+         left: calc(50vw - 3px);
       }
       100% {
-         top: -27px;
-         left: calc(50vw - 7.5px);
-         transform: rotate(90deg);
+         top: -18px;
+         left: calc(50vw - 3px);
+      }
+   }
+
+   @keyframes flicker {
+      0% {
+         opacity: 1;
+      }
+      10% {
+         opacity: 0;
+      }
+      12% {
+         opacity: 1;
+      }
+      70% {
+         opacity: 0;
+      }
+      75% {
+         opacity: 1;
+      }
+      80% {
+         opacity: 0;
+      }
+      85% {
+         opacity: 1;
+      }
+      90% {
+         opacity: 0;
+      }
+      93% {
+         opacity: 1;
+      }
+      96% {
+         opacity: 0;
+      }
+      98% {
+         opacity: 1;
+      }
+      100% {
+         opacity: 0;
       }
    }
 `
@@ -475,6 +383,14 @@ const Line = styled.div<{
    background-color: var(--dark-green);
    height: 2px;
    transform-origin: 0 1px;
+
+   ${props =>
+      props.theme.isOpening &&
+      `
+      animation: flicker ${Math.floor(
+         Math.random() * 1.5 + 1
+      )}s ease 500ms forwards;
+   `};
 `
 
 const Circle = styled.div<{ top: string; left: string }>`
@@ -487,33 +403,41 @@ const Circle = styled.div<{ top: string; left: string }>`
    border-radius: 50%;
    background-color: var(--matrix-green);
    box-shadow: 0px 0px 15px var(--matrix-green);
+
+   ${props =>
+      props.theme.isOpening &&
+      `
+      animation: flicker ${Math.floor(
+         Math.random() * 1.5 + 1
+      )}s ease 500ms forwards;
+   `};
 `
 
 const LeftNodeOne = styled.span`
-   left: -27px;
+   left: -18px;
    top: calc(40vh - 1.5px);
 
    animation: moveLeftNodeOne 10s linear 0s infinite;
 `
 
 const LeftNodeTwo = styled.span`
-   left: -27px;
+   left: -18px;
    top: calc(40vh - 1.5px);
 
    animation: moveLeftNodeTwo 26s linear 0s infinite;
 `
 
 const TopNodeOne = styled.span`
-   top: -27px;
-   left: calc(50vw - 7.5px);
+   top: -18px;
+   left: calc(50vw - 3px);
    transform: rotate(90deg);
 
    animation: moveTopNodeOne 10s linear 0s infinite;
 `
 
 const TopNodeTwo = styled.span`
-   top: -27px;
-   left: calc(50vw - 7.5px);
+   top: -18px;
+   left: calc(50vw - 3px);
    transform: rotate(90deg);
 
    animation: moveTopNodeTwo 10s linear 5s infinite;
@@ -535,7 +459,7 @@ const RightNodeTwo = styled.span`
 
 const BottomNodeOne = styled.span`
    top: calc(100vh + 7.5px);
-   left: calc(20vw - 7.5px);
+   left: calc(20vw - 3px);
    transform: rotate(90deg);
 
    animation: moveBottomNodeOne 10s linear 3s infinite;
