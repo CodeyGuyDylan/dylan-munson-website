@@ -23,6 +23,17 @@ const Circuit: FC = () => {
       }
    }, [])
 
+   // Lights nodes up when animation iteration is over
+   const onNodeAnimationIteration = (id: string) => {
+      const node = document.getElementById(id) as HTMLDivElement
+
+      node.style.backgroundColor = 'var(--matrix-green)'
+
+      setTimeout(() => {
+         node.style.backgroundColor = 'var(--dark-green)'
+      }, 500)
+   }
+
    return (
       <>
          {!isResizing && (
@@ -81,21 +92,31 @@ const Circuit: FC = () => {
                   width='5vw'
                   angle='180deg'
                />
-
                {/* In id names, m = middle, t = top, r = right, l = left, b = bottom, n = node */}
-               <Circle id='mrn' top='44vh' left='calc(80vw - 5px)' />
+               <Circle id='mrn' top='44.5vh' left='calc(80vw - 5px)' />
                <Circle id='bln' top='calc(80vh - 5px)' left='15vw' />
                <Circle id='brn' top='calc(85vh - 5px)' left='90vw' />
 
-               <LeftNodeOne />
-               <LeftNodeTwo />
-
-               <TopNodeOne />
-               <TopNodeTwo />
-               <RightNodeOne />
-               <RightNodeTwo />
-
-               <BottomNodeOne />
+               {/* On iteration tells node to light up */}
+               <LeftNodeOne id='lno' />
+               <LeftNodeTwo
+                  id='lnt'
+                  onAnimationIteration={() => onNodeAnimationIteration('brn')}
+               />
+               <TopNodeOne id='tno' />
+               <TopNodeTwo
+                  id='tnt'
+                  onAnimationIteration={() => onNodeAnimationIteration('mrn')}
+               />
+               <RightNodeOne
+                  id='rno'
+                  onAnimationIteration={() => onNodeAnimationIteration('bln')}
+               />
+               <RightNodeTwo
+                  id='rnt'
+                  onAnimationIteration={() => onNodeAnimationIteration('brn')}
+               />
+               <BottomNodeOne id='bno' />
             </Lines>
          )}
       </>
@@ -105,6 +126,10 @@ const Circuit: FC = () => {
 export default Circuit
 
 const Lines = styled.div<{ image: string }>`
+   // position adjusters for animations
+   --radius-adjuster: 3px;
+   --line-adjuster: 1.5px;
+
    height: 100vh;
    left: 0;
    overflow: hidden;
@@ -166,165 +191,165 @@ const Lines = styled.div<{ image: string }>`
    @keyframes moveLeftNodeOne {
       50% {
          left: -18px;
-         top: calc(40vh - 1.5px);
+         top: calc(40vh - var(--line-adjuster));
       }
       70% {
-         left: calc(20vw - 3px);
-         top: calc(40vh - 1.5px);
+         left: calc(20vw - var(--radius-adjuster));
+         top: calc(40vh - var(--line-adjuster));
       }
       100% {
-         left: calc(20vw - 3px);
-         top: calc(100vh + 16px);
+         left: calc(20vw - var(--radius-adjuster));
+         top: calc(100vh + var(--radius-adjuster));
       }
    }
 
    @keyframes moveLeftNodeTwo {
       62% {
          left: -18px;
-         top: calc(40vh - 1.5px);
+         top: calc(40vh - var(--line-adjuster));
       }
       67% {
-         left: calc(20vw - 3px);
-         top: calc(40vh - 1.5px);
+         left: calc(20vw - var(--radius-adjuster));
+         top: calc(40vh - var(--line-adjuster));
       }
       70% {
-         left: calc(20vw - 3px);
-         top: calc(55vh - 1.5px);
+         left: calc(20vw - var(--radius-adjuster));
+         top: calc(55vh - var(--line-adjuster));
       }
       82% {
-         left: 50vw;
-         top: calc(55vh - 1.5px);
+         left: calc(50vw - var(--radius-adjuster));
+         top: calc(55vh - var(--line-adjuster));
       }
       90% {
-         left: calc(50vw - 3px);
-         top: calc(85vh - 1.5px);
+         left: calc(50vw - var(--radius-adjuster));
+         top: calc(85vh - var(--line-adjuster));
       }
       100% {
-         left: calc(90vw - 16px);
-         top: calc(85vh - 1.5px);
+         left: calc(90vw - var(--radius-adjuster));
+         top: calc(85vh - var(--line-adjuster));
       }
    }
 
    @keyframes moveTopNodeOne {
       25% {
          top: -18px;
-         left: calc(50vw - 3px);
+         left: calc(50vw - var(--radius-adjuster));
       }
       50% {
-         top: calc(55vh - 1.5px);
-         left: calc(50vw - 3px);
+         top: calc(55vh - var(--line-adjuster));
+         left: calc(50vw - var(--radius-adjuster));
       }
       75% {
-         top: calc(55vh - 1.5px);
-         left: calc(20vw - 3px);
+         top: calc(55vh - var(--line-adjuster));
+         left: calc(20vw - var(--radius-adjuster));
       }
       82% {
-         top: calc(40vh - 1.5px);
-         left: calc(20vw - 3px);
+         top: calc(40vh - var(--line-adjuster));
+         left: calc(20vw - var(--radius-adjuster));
       }
       100% {
          left: -18px;
-         top: calc(40vh - 1.5px);
+         top: calc(40vh - var(--line-adjuster));
       }
    }
 
    @keyframes moveTopNodeTwo {
       25% {
          top: -18px;
-         left: calc(50vw - 3px);
+         left: calc(50vw - var(--radius-adjuster));
       }
       50% {
-         top: calc(55vh - 1.5px);
-         left: calc(50vw - 3px);
+         top: calc(55vh - var(--line-adjuster));
+         left: calc(50vw - var(--radius-adjuster));
       }
       63% {
-         top: calc(55vh - 1.5px);
-         left: calc(60vw - 3px);
+         top: calc(55vh - var(--line-adjuster));
+         left: calc(60vw - var(--radius-adjuster));
       }
       75% {
-         top: calc(35vh - 2px);
-         left: calc(60vw - 3px);
+         top: calc(35vh - var(--line-adjuster) - 0.5px);
+         left: calc(60vw - var(--radius-adjuster));
       }
       93% {
-         top: calc(35vh - 2px);
-         left: calc(80vw - 3px);
+         top: calc(35vh - var(--line-adjuster) - 0.5px);
+         left: calc(80vw - var(--radius-adjuster));
       }
       100% {
-         top: calc(45vh - 3px);
-         left: calc(80vw - 3px);
+         top: calc(44vh - var(--radius-adjuster));
+         left: calc(80vw - var(--radius-adjuster));
       }
    }
 
    @keyframes moveRightNodeOne {
       10% {
-         top: calc(35vh - 2px);
+         top: calc(35vh - var(--line-adjuster) - 0.5px);
          left: calc(100vw + 2px);
       }
       38% {
-         top: calc(35vh - 2px);
-         left: calc(60vw - 3px);
+         top: calc(35vh - var(--line-adjuster) - 0.5px);
+         left: calc(60vw - var(--radius-adjuster));
       }
       48% {
-         top: calc(55vh - 1.5px);
-         left: calc(60vw - 3px);
+         top: calc(55vh - var(--line-adjuster));
+         left: calc(60vw - var(--radius-adjuster));
       }
       80% {
-         top: calc(55vh - 1.5px);
-         left: calc(20vw - 3px);
+         top: calc(55vh - var(--line-adjuster));
+         left: calc(20vw - var(--radius-adjuster));
       }
       93% {
-         top: calc(80vh - 1.5px);
-         left: calc(20vw - 3px);
+         top: calc(80vh - var(--line-adjuster));
+         left: calc(20vw - var(--radius-adjuster));
       }
       100% {
-         top: calc(80vh - 1.5px);
+         top: calc(80vh - var(--line-adjuster));
          left: 15vw;
       }
    }
 
    @keyframes moveRightNodeTwo {
       10% {
-         top: calc(35vh - 2px);
+         top: calc(35vh - var(--line-adjuster) - 0.5px);
          left: calc(100vw + 2px);
       }
       38% {
-         top: calc(35vh - 2px);
-         left: calc(60vw - 3px);
+         top: calc(35vh - var(--line-adjuster) - 0.5px);
+         left: calc(60vw - var(--radius-adjuster));
       }
       48% {
-         top: calc(55vh - 1.5px);
-         left: calc(60vw - 3px);
+         top: calc(55vh - var(--line-adjuster));
+         left: calc(60vw - var(--radius-adjuster));
       }
       60% {
-         top: calc(55vh - 1.5px);
-         left: calc(50vw - 3px);
+         top: calc(55vh - var(--line-adjuster));
+         left: calc(50vw - var(--radius-adjuster));
       }
       75% {
-         top: calc(85vh - 1.5px);
-         left: calc(50vw - 3px);
+         top: calc(85vh - var(--line-adjuster));
+         left: calc(50vw - var(--radius-adjuster));
       }
       100% {
-         top: calc(85vh - 1.5px);
-         left: calc(90vw - 3px);
+         top: calc(85vh - var(--line-adjuster));
+         left: calc(90vw - var(--radius-adjuster));
       }
    }
 
    @keyframes moveBottomNodeOne {
       0% {
          top: calc(100vh + 3px);
-         left: calc(20vw - 3px);
+         left: calc(20vw - var(--radius-adjuster));
       }
       30% {
-         top: calc(55vh - 3px);
-         left: calc(20vw - 3px);
+         top: calc(55vh - var(--radius-adjuster));
+         left: calc(20vw - var(--radius-adjuster));
       }
       65% {
-         top: calc(55vh - 1.5px);
-         left: calc(50vw - 3px);
+         top: calc(55vh - var(--line-adjuster));
+         left: calc(50vw - var(--radius-adjuster));
       }
       100% {
          top: -18px;
-         left: calc(50vw - 3px);
+         left: calc(50vw - var(--radius-adjuster));
       }
    }
 
@@ -397,12 +422,12 @@ const Circle = styled.div<{ top: string; left: string }>`
    position: absolute;
    top: ${props => props.top};
    left: ${props => props.left};
-
    width: 10px;
    height: 10px;
    border-radius: 50%;
-   background-color: var(--matrix-green);
+   background-color: var(--dark-green);
    box-shadow: 0px 0px 15px var(--matrix-green);
+   transition: background-color 500ms ease;
 
    ${props =>
       props.theme.isOpening &&
@@ -415,21 +440,21 @@ const Circle = styled.div<{ top: string; left: string }>`
 
 const LeftNodeOne = styled.span`
    left: -18px;
-   top: calc(40vh - 1.5px);
+   top: calc(40vh - var(--line-adjuster));
 
    animation: moveLeftNodeOne 10s linear 0s infinite;
 `
 
 const LeftNodeTwo = styled.span`
    left: -18px;
-   top: calc(40vh - 1.5px);
+   top: calc(40vh - var(--line-adjuster));
 
    animation: moveLeftNodeTwo 26s linear 0s infinite;
 `
 
 const TopNodeOne = styled.span`
    top: -18px;
-   left: calc(50vw - 3px);
+   left: calc(50vw - var(--radius-adjuster));
    transform: rotate(90deg);
 
    animation: moveTopNodeOne 10s linear 0s infinite;
@@ -437,21 +462,21 @@ const TopNodeOne = styled.span`
 
 const TopNodeTwo = styled.span`
    top: -18px;
-   left: calc(50vw - 3px);
+   left: calc(50vw - var(--radius-adjuster));
    transform: rotate(90deg);
 
    animation: moveTopNodeTwo 10s linear 5s infinite;
 `
 
 const RightNodeOne = styled.span`
-   top: calc(35vh - 2px);
+   top: calc(35vh - var(--line-adjuster) - 0.5px);
    left: calc(100vw + 2px);
 
    animation: moveRightNodeOne 13s linear 3s infinite;
 `
 
 const RightNodeTwo = styled.span`
-   top: calc(35vh - 2px);
+   top: calc(35vh - var(--line-adjuster) - 0.5px);
    left: calc(100vw + 2px);
 
    animation: moveRightNodeTwo 15s linear 6s infinite;
@@ -459,7 +484,7 @@ const RightNodeTwo = styled.span`
 
 const BottomNodeOne = styled.span`
    top: calc(100vh + 3px);
-   left: calc(20vw - 3px);
+   left: calc(20vw - var(--radius-adjuster));
    transform: rotate(90deg);
 
    animation: moveBottomNodeOne 10s linear 3s infinite;
