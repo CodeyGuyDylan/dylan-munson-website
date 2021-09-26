@@ -241,7 +241,7 @@ const Loader = styled.div`
    justify-content: center;
    position: relative;
    height: 15px;
-   width: 15em;
+   width: 100%;
    border: 2px solid var(--matrix-green);
    margin: 21px 0 60px 0;
 
