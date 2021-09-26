@@ -52,7 +52,7 @@ const Circuit: FC = () => {
                   id='mbv'
                   top='55vh'
                   left='20vw'
-                  width='45vh'
+                  width='90vh'
                   angle='90deg'
                />
                <Line
@@ -94,8 +94,8 @@ const Circuit: FC = () => {
                />
                {/* In id names, m = middle, t = top, r = right, l = left, b = bottom, n = node */}
                <Circle id='mrn' top='44.5vh' left='calc(80vw - 5px)' />
-               <Circle id='bln' top='calc(80vh - 5px)' left='15vw' />
-               <Circle id='brn' top='calc(85vh - 5px)' left='90vw' />
+               <Circle id='bln' top='calc(80vh - 4px)' left='15vw' />
+               <Circle id='brn' top='calc(85vh - 4px)' left='90vw' />
 
                {/* On iteration tells node to light up */}
                <LeftNodeOne id='lno' />
@@ -133,7 +133,7 @@ const Lines = styled.div<{ image: string }>`
    height: 100vh;
    left: 0;
    overflow: hidden;
-   position: absolute;
+   position: fixed;
    top: 0;
    width: 100vw;
    z-index: -1;
@@ -412,9 +412,7 @@ const Line = styled.div<{
    ${props =>
       props.theme.isOpening &&
       `
-      animation: flicker ${Math.floor(
-         Math.random() * 1.5 + 1
-      )}s ease 500ms forwards;
+      animation: flicker ${Math.random() * 1.5 + 1}s ease 500ms forwards;
    `};
 `
 
@@ -432,9 +430,7 @@ const Circle = styled.div<{ top: string; left: string }>`
    ${props =>
       props.theme.isOpening &&
       `
-      animation: flicker ${Math.floor(
-         Math.random() * 1.5 + 1
-      )}s ease 500ms forwards;
+      animation: flicker ${Math.random() * 1.5 + 1}s ease 500ms forwards;
    `};
 `
 

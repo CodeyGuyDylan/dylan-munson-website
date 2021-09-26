@@ -13,23 +13,47 @@ import TypedWords from '../components/TypedWords'
 // Helper
 import mediaQueries from '../helper/mediaQueries'
 
+const attrs = [
+   { id: 1, name: 'Profession:', value: 'Front-End Web Developer' },
+   { id: 2, name: 'Age:', value: '25' },
+   { id: 3, name: 'Height:', value: 'Tall' },
+   { id: 4, name: 'Hair:', value: 'Brown' },
+   { id: 5, name: 'Eyes:', value: 'Yes' },
+   { id: 6, name: 'Alignment:', value: 'Lawful Good' },
+]
+
+const loadingMessages = [
+   `Modulating the subnet`,
+   `Subulating the modnet`,
+   `Filling bar with green ooze`,
+   `Neglecting my duties at home`,
+   `Fixing the background circuit ...again`,
+   `Realizing I'm sentient`,
+   `Loading a file or something`,
+   `Selling more paper than Dwight K. Schrute`,
+   `Watching 30 Rock reruns`,
+   `Calculating how long this will take`,
+   `JERRY! WHERE THE @#$% IS THIS FILE?!`,
+   `Jumping to conclusions`,
+   `Reading books by their covers`,
+   `Changing alignment to Chaotic Neutral`,
+   `Watching the entire Doctor Who series`,
+   `Typing Typescript... Javaing Javascript?`,
+   `Overstaying my welcome`,
+   `Faking data load to show you witty quips`,
+]
+
 const Home: FC = () => {
    const history = useHistory()
-   const [isOpening, setIsOpening] = useState(false)
+   const [isOpening, setIsOpening] = useState<boolean>(false)
+   const [loadingMessage, setLoadingMessage] = useState<string>(
+      loadingMessages[0]
+   )
 
    // Allows all styled components to know if the user has clicked the open file button
    const theme = {
       isOpening,
    }
-
-   const attrs = [
-      { id: 1, name: 'Profession:', value: 'Front-End Web Developer' },
-      { id: 2, name: 'Age:', value: '25' },
-      { id: 3, name: 'Height:', value: 'Tall' },
-      { id: 4, name: 'Hair:', value: 'Brown' },
-      { id: 5, name: 'Eyes:', value: 'Yes' },
-      { id: 6, name: 'Alignment:', value: 'Lawful Good' },
-   ]
 
    // Sets local storage to show user has watched animation and skips over the typing animation if button was clicked before it was finished
    const openFile = () => {
@@ -39,7 +63,7 @@ const Home: FC = () => {
       // Sends user to file page after animations have run
       setTimeout(() => {
          history.push('/file')
-      }, 3000)
+      }, 4000)
    }
 
    const skipAnimation = () => {
@@ -57,8 +81,15 @@ const Home: FC = () => {
          }, 7500)
       }
 
+      let randomizeMessages = setInterval(() => {
+         const randIndex = Math.floor(Math.random() * loadingMessages.length)
+
+         setLoadingMessage(loadingMessages[randIndex])
+      }, 3000)
+
       return () => {
          clearTimeout(visited)
+         clearInterval(randomizeMessages)
       }
    }, [])
 
@@ -80,7 +111,7 @@ const Home: FC = () => {
                         const { id, name, value } = attr
 
                         return (
-                           <h2 key={id}>
+                           <Attribute key={id}>
                               {i === 0 ? (
                                  <>
                                     <TypedWords delay={1.8} text={`${name}`} />
@@ -93,14 +124,16 @@ const Home: FC = () => {
                                     text={`${name} ${value}`}
                                  />
                               )}
-                           </h2>
+                           </Attribute>
                         )
                      })}
                   </Attributes>
                </Details>
 
                {isOpening ? (
-                  <Loader />
+                  <Loader>
+                     <LoadingMessage>{loadingMessage}</LoadingMessage>
+                  </Loader>
                ) : (
                   <OpenFile onClick={openFile}>Open File</OpenFile>
                )}
@@ -169,14 +202,14 @@ const Attributes = styled.div`
    max-width: 100%;
    width: 100%;
 
-   h2 {
-      margin: 1rem 0;
-      text-align: left;
-   }
-
    ${mediaQueries.laptop`
       margin-left: 2rem;
    `}
+`
+
+const Attribute = styled.h2`
+   margin: 1rem 0;
+   text-align: left;
 `
 
 const OpenFile = styled.button`
@@ -185,7 +218,7 @@ const OpenFile = styled.button`
    background-color: transparent;
    border: 5px solid var(--matrix-green);
    cursor: pointer;
-   margin-bottom: 10px;
+   margin-bottom: 42px;
    max-width: 100%;
    padding: 0.5em;
    width: 10em;
@@ -204,14 +237,16 @@ const OpenFile = styled.button`
 `
 
 const Loader = styled.div`
+   display: flex;
+   justify-content: center;
    position: relative;
    height: 15px;
    width: 15em;
    border: 2px solid var(--matrix-green);
-   margin: 21px 0 28px 0;
+   margin: 21px 0 60px 0;
 
    ::before {
-      animation: load 3s linear 0s forwards;
+      animation: load 4s linear 0s forwards;
       background-color: var(--matrix-green);
       content: '';
       height: 100%;
@@ -223,14 +258,28 @@ const Loader = styled.div`
 
    ${mediaQueries.laptop`
       margin: calc(2rem + 35px) 0;
+      width: 20em;
    `}
 
    @keyframes load {
       0% {
          width: 0%;
       }
+      20% {
+         width: 40%;
+      }
+      80% {
+         width: 60%;
+      }
       100% {
          width: 100%;
       }
    }
+`
+
+const LoadingMessage = styled.span`
+   position: relative;
+   text-align: center;
+   top: 1.4em;
+   max-width: 90%;
 `
