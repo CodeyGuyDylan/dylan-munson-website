@@ -46,9 +46,6 @@ const loadingMessages = [
 const Home: FC = () => {
    const history = useHistory()
    const [isOpening, setIsOpening] = useState<boolean>(false)
-   const [loadingMessage, setLoadingMessage] = useState<string>(
-      loadingMessages[0]
-   )
 
    // Allows all styled components to know if the user has clicked the open file button
    const theme = {
@@ -70,6 +67,12 @@ const Home: FC = () => {
       localStorage.setItem('watched_typing_animation', 'yes')
    }
 
+   const getRandomMessage = () => {
+      const randIndex = Math.floor(Math.random() * loadingMessages.length)
+
+      return loadingMessages[randIndex]
+   }
+
    // Sets local storage to show user has watched animation if they've stayed on the page for the full duration
    useEffect(() => {
       let visited: ReturnType<typeof setTimeout>
@@ -81,15 +84,8 @@ const Home: FC = () => {
          }, 7500)
       }
 
-      let randomizeMessages = setInterval(() => {
-         const randIndex = Math.floor(Math.random() * loadingMessages.length)
-
-         setLoadingMessage(loadingMessages[randIndex])
-      }, 3000)
-
       return () => {
          clearTimeout(visited)
-         clearInterval(randomizeMessages)
       }
    }, [])
 
@@ -132,7 +128,7 @@ const Home: FC = () => {
 
                {isOpening ? (
                   <Loader>
-                     <LoadingMessage>{loadingMessage}</LoadingMessage>
+                     <LoadingMessage>{getRandomMessage()}</LoadingMessage>
                   </Loader>
                ) : (
                   <OpenFile onClick={openFile}>Open File</OpenFile>
