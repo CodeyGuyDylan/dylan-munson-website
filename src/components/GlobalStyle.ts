@@ -18,6 +18,10 @@ const GlobalStyle = createGlobalStyle`
     --mobile-text-shrink: 0.6;
   }
 
+  * {
+    box-sizing: border-box;
+  }
+
   html {
     background-color: var(--black);
     font-size: 18px;
