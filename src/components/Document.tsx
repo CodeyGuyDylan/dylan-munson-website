@@ -8,6 +8,7 @@ import {
 } from 'react'
 import { IconType } from 'react-icons'
 import styled from 'styled-components'
+import mediaQueries from '../helper/mediaQueries'
 
 interface IDocument {
    index: number
@@ -84,8 +85,6 @@ const Document: FC<IDocument> = ({ index, name, Icon, setFileOpened }) => {
          onPointerDown={handlePointerDown}
          onDoubleClick={openFile}
          style={{
-            position:
-               position.top || position.top === 0 ? 'absolute' : 'initial',
             top: position.top || '0',
             left: position.left || '0',
             opacity: isDragging ? '0.3' : '1',
@@ -104,9 +103,12 @@ const Wrapper = styled.div`
    display: flex;
    flex-direction: column;
    height: 160px;
-   position: absolute;
    user-select: none;
    width: 175px;
+
+   ${mediaQueries.laptop`
+      position: absolute;
+   `}
 
    svg {
       height: 100px;

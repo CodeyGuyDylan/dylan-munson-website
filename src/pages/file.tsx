@@ -12,6 +12,7 @@ import {
 
 // Components
 import Document from '../components/Document'
+import mediaQueries from '../helper/mediaQueries'
 
 const documents = [
    { name: 'about.txt', icon: FaBook },
@@ -48,7 +49,14 @@ const File: FC = () => {
 export default File
 
 const Documents = styled.main`
-
+   display: grid;
+   grid-template-columns: repeat(auto-fit, 175px);
+   margin-top: 35px;
+   gap: 2rem 1rem;
+   
+   ${mediaQueries.laptop`
+      display: initial;
+   `}
 `
 
 // Douments
