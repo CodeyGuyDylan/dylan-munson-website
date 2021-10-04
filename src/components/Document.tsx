@@ -130,6 +130,7 @@ const Document: FC<IDocument> = ({ children, file, setFilesOpened }) => {
 
    return (
       <Wrapper
+         role='dialog'
          ref={wrapperElem}
          style={{
             top: isFullScreen ? '0' : position.top || '50%',
@@ -147,12 +148,16 @@ const Document: FC<IDocument> = ({ children, file, setFilesOpened }) => {
                   tabIndex={0}
                   onKeyDown={keyboardToggleFullScreen}
                   onClick={toggleFullScreen}
+                  role='button'
+                  aria-label='Switch to windowed mode'
                />
             ) : (
                <FullScreen
                   tabIndex={0}
                   onKeyDown={keyboardToggleFullScreen}
                   onClick={toggleFullScreen}
+                  role='button'
+                  aria-label='Switch to fullscreen mode'
                />
             )}
 
@@ -160,6 +165,8 @@ const Document: FC<IDocument> = ({ children, file, setFilesOpened }) => {
                tabIndex={0}
                onKeyDown={keyboardCloseDocument}
                onClick={closeDocument}
+               role='button'
+               aria-label='Exit file'
             />
          </Actions>
 

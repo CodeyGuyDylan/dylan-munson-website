@@ -116,6 +116,7 @@ const DocumentIcon: FC<IDocument> = ({ index, name, Icon, setFileOpened }) => {
 
    return (
       <Wrapper
+         role='button'
          tabIndex={0}
          id={name.split('.')[0]}
          onPointerDown={handlePointerDown}
