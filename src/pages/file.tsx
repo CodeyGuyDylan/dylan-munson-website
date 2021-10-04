@@ -11,7 +11,10 @@ import {
 } from 'react-icons/fa'
 
 // Components
+import DocumentIcon from '../components/DocumentIcon'
 import Document from '../components/Document'
+
+// Helper
 import mediaQueries from '../helper/mediaQueries'
 
 const documents = [
@@ -24,25 +27,31 @@ const documents = [
 ]
 
 const File: FC = () => {
-   const [fileOpened, setFileOpened] = useState('')
-
-   console.log(fileOpened)
-
+   const [filesOpened, setFilesOpened] = useState<string[]>([])
+   
    return (
-      <Documents>
-         {documents.map((document, index) => {
-            const { name, icon } = document
-            return (
-               <Document
-                  index={index}
-                  key={name}
-                  name={name}
-                  Icon={icon}
-                  setFileOpened={setFileOpened}
-               />
-            )
-         })}
-      </Documents>
+      <>
+         <Documents>
+            {documents.map((document, index) => {
+               const { name, icon } = document
+               return (
+                  <DocumentIcon
+                     index={index}
+                     key={name}
+                     name={name}
+                     Icon={icon}
+                     setFileOpened={setFilesOpened}
+                  />
+               )
+            })}
+         </Documents>
+      
+         {filesOpened.map(file => (
+            <Document key={file} setFilesOpened={setFilesOpened} file={file}>
+               Hello
+            </Document>
+         ))}
+      </>
    )
 }
 
@@ -53,7 +62,7 @@ const Documents = styled.main`
    grid-template-columns: repeat(auto-fit, 175px);
    margin-top: 35px;
    gap: 2rem 1rem;
-   
+
    ${mediaQueries.laptop`
       display: initial;
    `}

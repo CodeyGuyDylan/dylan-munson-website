@@ -1,60 +1,107 @@
 import {
    useState,
+   useEffect,
+   useRef,
    Dispatch,
    FC,
+   ReactNode,
    SetStateAction,
-   PointerEvent,
-   useEffect,
+   KeyboardEvent,
 } from 'react'
-import { IconType } from 'react-icons'
 import styled from 'styled-components'
-import mediaQueries from '../helper/mediaQueries'
 
 interface IDocument {
-   index: number
-   name: string
-   Icon: IconType
-   setFileOpened: Dispatch<SetStateAction<string>>
+   children: ReactNode
+   file: string
+   setFilesOpened: Dispatch<SetStateAction<string[]>>
 }
 
-type PositionType = { top: number | null; left: number | null }
-
-const Document: FC<IDocument> = ({ index, name, Icon, setFileOpened }) => {
+const Document: FC<IDocument> = ({ children, file, setFilesOpened }) => {
+   const [isFullScreen, setIsFullScreen] = useState<boolean>(false)
    const [isDragging, setIsDragging] = useState<boolean>(false)
+   const [position, setPosition] = useState<{
+      top: number | null | string
+      left: number | null | string
+   }>({ top: null, left: null })
 
-   // Default position to be at the top and in the position of the row calculated by the index
-   const [position, setPosition] = useState<PositionType>({
-      top: 35,
-      left: index * 185,
-   })
+   const wrapperElem = useRef<HTMLDivElement | null>(null)
 
-   const openFile = () => {
-      const fileName = name.split('.')[0]
+   // Removes current file from array
+   const removeFromArray = (arr: string[]) => {
+      const index = arr.indexOf(file)
 
-      setFileOpened(fileName)
+      return [...arr.slice(0, index), ...arr.slice(index + 1, arr.length)]
    }
 
-   // Sets coordinates based on where the user dragged the box to
+   // Close document on click
+   const closeDocument = () => {
+      setFilesOpened(removeFromArray)
+   }
+
+   // Close document on enter
+   const keyboardCloseDocument = (e: KeyboardEvent) => {
+      if (e.key === 'Enter') {
+         setFilesOpened(removeFromArray)
+      }
+   }
+
+   // Toggle fullscreen on click
+   const toggleFullScreen = () => {
+      setIsFullScreen(prev => !prev)
+   }
+
+   // Toggle fullscreen on enter
+   const keyboardToggleFullScreen = (e: KeyboardEvent) => {
+      if (e.key === 'Enter') {
+         setIsFullScreen(prev => !prev)
+      }
+   }
+
    const onDragMove = (e: PointerEvent) => {
-      const newLeft =
-         e.clientX <= 0
-            ? 0
-            : e.clientX >= window.innerWidth
-            ? window.innerWidth
-            : e.clientX
+      const newLeft = (position.left as number) + e.movementX
+      const newTop = (position.top as number) + e.movementY
 
-      const newTop =
-         e.clientY <= 0
-            ? 0
-            : e.clientY >= window.innerWidth
-            ? window.innerHeight
-            : e.clientY
+      const wrapper = wrapperElem.current!
+      const { clientWidth, clientHeight } = wrapper
 
-      // Subtract half the height and width of the file to drag by the center
-      setPosition({
-         left: newLeft - 87.5,
-         top: newTop - 80,
-      })
+      const { innerWidth } = window
+
+      const getComputedStyle = (style: string) => {
+         return Number(
+            window
+               .getComputedStyle(wrapper, null)
+               .getPropertyValue(style)
+               .split('p')[0]
+         )
+      }
+      // Calculate original left value to smooth conversion from % to px
+      const computedLeft = getComputedStyle('left')
+      const originalLeft = computedLeft - clientWidth / 2
+
+      // Calculate original top value to smooth conversion from % to px
+      const computedTop = getComputedStyle('top')
+      const originalTop = computedTop - clientHeight / 2
+
+      // Determins if the window should be able to be dragged
+      const shouldMove =
+         !isFullScreen &&
+         newLeft > 0 &&
+         newTop > 0 &&
+         newLeft < innerWidth - clientWidth
+
+      if (position.left && position.top) {
+         if (shouldMove) {
+            setPosition({
+               left: newLeft,
+               top: newTop,
+            })
+         }
+      } else {
+         setPosition({
+            left: originalLeft,
+            top: originalTop,
+         })
+      }
    }
 
    const handlePointerDown = () => {
@@ -66,7 +113,9 @@ const Document: FC<IDocument> = ({ index, name, Icon, setFileOpened }) => {
    }
 
    const handlePointerMove = (e: any) => {
-      if (isDragging) onDragMove(e)
+      if (isDragging) {
+         onDragMove(e)
+      }
    }
 
    useEffect(() => {
@@ -81,17 +130,42 @@ const Document: FC<IDocument> = ({ index, name, Icon, setFileOpened }) => {
 
    return (
       <Wrapper
-         id={name.split('.')[0]}
-         onPointerDown={handlePointerDown}
-         onDoubleClick={openFile}
+         ref={wrapperElem}
          style={{
-            top: position.top || '0',
-            left: position.left || '0',
-            opacity: isDragging ? '0.3' : '1',
+            top: isFullScreen ? '0' : position.top || '50%',
+            left: isFullScreen ? '0' : position.left || '50%',
+            transform:
+               !position.top && !isFullScreen ? 'translate(-50%, -50%)' : '',
+            width: isFullScreen ? '100vw' : '800px',
+            height: isFullScreen ? '100vh' : '90vh',
+            maxWidth: isFullScreen ? '100vw' : '90vw',
          }}
       >
-         <Icon />
-         <p>{name}</p>
+         <Actions onPointerDown={handlePointerDown}>
+            {isFullScreen ? (
+               <Windowed
+                  tabIndex={0}
+                  onKeyDown={keyboardToggleFullScreen}
+                  onClick={toggleFullScreen}
+               />
+            ) : (
+               <FullScreen
+                  tabIndex={0}
+                  onKeyDown={keyboardToggleFullScreen}
+                  onClick={toggleFullScreen}
+               />
+            )}
+
+            <Exit
+               tabIndex={0}
+               onKeyDown={keyboardCloseDocument}
+               onClick={closeDocument}
+            />
+         </Actions>
+
+         <Heading>{file.split('-').join(' ').toUpperCase()}</Heading>
+
+         <article>{children}</article>
       </Wrapper>
    )
 }
@@ -99,23 +173,110 @@ const Document: FC<IDocument> = ({ index, name, Icon, setFileOpened }) => {
 export default Document
 
 const Wrapper = styled.div`
-   align-items: center;
-   display: flex;
-   flex-direction: column;
-   height: 160px;
-   user-select: none;
-   width: 175px;
+   background-color: #000;
+   border: 5px solid var(--matrix-green);
+   height: 90vh;
+   max-width: 90vw;
+   padding: 2rem;
+   position: absolute;
+   width: 800px;
+`
 
-   ${mediaQueries.laptop`
+const Heading = styled.h1`
+   text-align: center;
+   margin: 10px 0;
+`
+
+const Exit = styled.span`
+   position: relative;
+
+   ::before,
+   ::after {
+      background-color: var(--matrix-green);
+      content: '';
+      height: 20px;
+      right: 16px;
       position: absolute;
-   `}
-
-   svg {
-      height: 100px;
-      width: 100px;
+      top: 7.5px;
+      width: 3px;
    }
 
-   :hover {
+   ::before {
+      transform: rotate(45deg);
+   }
+
+   ::after {
+      transform: rotate(-45deg);
+   }
+`
+
+const FullScreen = styled.span`
+   ::before {
+      border: 2px solid var(--matrix-green);
+      box-sizing: border-box;
+      content: '';
+      height: 15px;
+      left: 8px;
+      position: absolute;
+      top: 10px;
+      width: 15px;
+   }
+`
+
+const Windowed = styled.span`
+   ::before,
+   ::after {
+      background-color: #000;
+      border: 2px solid var(--matrix-green);
+      box-sizing: border-box;
+      content: '';
+      height: 15px;
+      position: absolute;
+      width: 15px;
+   }
+
+   ::before {
+      bottom: 13px;
+      left: 11px;
+   }
+
+   ::after {
+      bottom: 8px;
+      left: 6px;
+   }
+`
+
+const Actions = styled.div`
+   border-bottom: 2px solid var(--matrix-green);
+   cursor: pointer;
+   display: flex;
+   justify-content: flex-end;
+   position: absolute;
+   right: 0;
+   top: 0;
+   width: 100%;
+
+   ${FullScreen},
+   ${Exit},
+   ${Windowed} {
       cursor: pointer;
+      display: inline-block;
+      height: 35px;
+      width: 35px;
+
+      :hover,
+      :focus {
+         ::before,
+         ::after {
+            opacity: 0.6;
+         }
+      }
+   }
+
+   ${FullScreen},
+   ${Windowed} {
+      border-left: 2px solid var(--matrix-green);
+      border-right: 2px solid var(--matrix-green);
+      position: relative;
    }
 `
