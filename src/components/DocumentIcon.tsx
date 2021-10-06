@@ -172,6 +172,10 @@ const Wrapper = styled.div`
       width: 100px;
    }
 
+   p {
+      font-size: 1em;
+   }
+
    :hover {
       cursor: pointer;
    }

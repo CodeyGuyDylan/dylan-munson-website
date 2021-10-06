@@ -209,6 +209,10 @@ const Wrapper = styled.div`
       font-size: 1.5em;
    }
 
+   h3 {
+      font-size: 1.3em;
+   }
+
    p {
       font-size: 1em;
    }

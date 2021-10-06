@@ -14,6 +14,7 @@ import {
 import DocumentIcon from '../components/DocumentIcon'
 import Document from '../components/Document'
 import About from '../components/files/About'
+import WorkHistory from '../components/files/WorkHistory'
 
 // Helper
 import mediaQueries from '../helper/mediaQueries'
@@ -40,6 +41,8 @@ const File: FC = () => {
       switch (file) {
          case 'about':
             return <About />
+         case 'work-history':
+            return <WorkHistory />
          default:
             return <div></div>
       }

@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
     --dark-green: #003b00;
     --heading-one: 2rem;
     --heading-two: 1.8rem;
-    --heading-three: 1.6rem;
+    --heading-three: 1.3rem;
     --regular-text: 1rem;
     --mobile-text-shrink: 0.6;
   }
