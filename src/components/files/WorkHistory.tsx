@@ -52,43 +52,6 @@ const relevant = [
 const WorkHistory: FC = () => {
    return (
       <div>
-         <h2>Boring Jobs</h2>
-
-         <hr />
-
-         {boring.map(job => {
-            const {
-               title,
-               position,
-               where,
-               startDate,
-               endDate,
-               reference,
-               responsibilities,
-            } = job
-
-            return (
-               <Job key={title}>
-                  <h3>{title}</h3>
-
-                  <p>Position: {position}</p>
-
-                  <p>Where: {where}</p>
-
-                  <p>
-                     When: <time>{startDate}</time> - <time>{endDate}</time>
-                  </p>
-
-                  <p>Reference: {reference}</p>
-
-                  <p>
-                     Responsibilities: <br />
-                     {responsibilities}
-                  </p>
-               </Job>
-            )
-         })}
-
          <h2>Relevant Jobs</h2>
 
          <hr />
@@ -124,6 +87,43 @@ const WorkHistory: FC = () => {
                         </Fragment>
                      ))}
                   </p>
+
+                  <p>
+                     Responsibilities: <br />
+                     {responsibilities}
+                  </p>
+               </Job>
+            )
+         })}
+       
+         <h2>Boring Jobs</h2>
+
+         <hr />
+
+         {boring.map(job => {
+            const {
+               title,
+               position,
+               where,
+               startDate,
+               endDate,
+               reference,
+               responsibilities,
+            } = job
+
+            return (
+               <Job key={title}>
+                  <h3>{title}</h3>
+
+                  <p>Position: {position}</p>
+
+                  <p>Where: {where}</p>
+
+                  <p>
+                     When: <time>{startDate}</time> - <time>{endDate}</time>
+                  </p>
+
+                  <p>Reference: {reference}</p>
 
                   <p>
                      Responsibilities: <br />
