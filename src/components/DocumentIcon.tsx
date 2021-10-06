@@ -15,12 +15,19 @@ interface IDocument {
    index: number
    name: string
    Icon: IconType
+   filesOpened: string[]
    setFileOpened: Dispatch<SetStateAction<string[]>>
 }
 
 type PositionType = { top: number | null; left: number | null }
 
-const DocumentIcon: FC<IDocument> = ({ index, name, Icon, setFileOpened }) => {
+const DocumentIcon: FC<IDocument> = ({
+   index,
+   name,
+   Icon,
+   filesOpened,
+   setFileOpened,
+}) => {
    const [isDragging, setIsDragging] = useState<boolean>(false)
 
    // Default position to be at the top and in the position of the row calculated by the index
@@ -52,7 +59,9 @@ const DocumentIcon: FC<IDocument> = ({ index, name, Icon, setFileOpened }) => {
 
    // Opens file on enter
    const keyboardOpenFile = (e: KeyboardEvent) => {
-      setFileOpened(addFileToArray)
+      if (e.key === 'Enter') {
+         setFileOpened(addFileToArray)
+      }
    }
 
    // Sets coordinates based on where the user dragged the box to
@@ -104,6 +113,14 @@ const DocumentIcon: FC<IDocument> = ({ index, name, Icon, setFileOpened }) => {
       }
    }
 
+   const getWindowWidth = () => {
+      if (typeof window !== 'undefined') {
+         return window.innerWidth
+      }
+
+      return 0
+   }
+
    useEffect(() => {
       window.addEventListener('pointerup', handlePointerUp)
       window.addEventListener('pointermove', handlePointerMove)
@@ -117,14 +134,15 @@ const DocumentIcon: FC<IDocument> = ({ index, name, Icon, setFileOpened }) => {
    return (
       <Wrapper
          role='button'
-         tabIndex={0}
+         tabIndex={filesOpened.length > 0 ? -1 : 0}
          id={name.split('.')[0]}
          onPointerDown={handlePointerDown}
          onDoubleClick={openFile}
+         onTouchEnd={openFile}
          onKeyDown={keyboardOpenFile}
          style={{
-            top: position.top || '0',
-            left: position.left || '0',
+            top: getWindowWidth() > 848 ? position.top || '0' : 35,
+            left: getWindowWidth() > 848 ? position.left || '0' : index * 185,
          }}
       >
          <Icon />

@@ -9,6 +9,7 @@ import {
    KeyboardEvent,
 } from 'react'
 import styled from 'styled-components'
+import mediaQueries from '../helper/mediaQueries'
 
 interface IDocument {
    children: ReactNode
@@ -113,7 +114,7 @@ const Document: FC<IDocument> = ({ children, file, setFilesOpened }) => {
    }
 
    const handlePointerMove = (e: any) => {
-      if (isDragging) {
+      if (isDragging && window.innerWidth > 848) {
          onDragMove(e)
       }
    }
@@ -136,7 +137,9 @@ const Document: FC<IDocument> = ({ children, file, setFilesOpened }) => {
             top: isFullScreen ? '0' : position.top || '50%',
             left: isFullScreen ? '0' : position.left || '50%',
             transform:
-               !position.top && !isFullScreen ? 'translate(-50%, -50%)' : '',
+               (!position.top && !isFullScreen) || position.top === '50%'
+                  ? 'translate(-50%, -50%)'
+                  : '',
             width: isFullScreen ? '100vw' : '800px',
             height: isFullScreen ? '100vh' : '90vh',
             maxWidth: isFullScreen ? '100vw' : '90vw',
@@ -180,18 +183,53 @@ const Document: FC<IDocument> = ({ children, file, setFilesOpened }) => {
 export default Document
 
 const Wrapper = styled.div`
+   -ms-overflow-style: none;
    background-color: #000;
    border: 5px solid var(--matrix-green);
    height: 90vh;
    max-width: 90vw;
-   padding: 2rem;
+   overflow-y: scroll;
    position: absolute;
+   scrollbar-width: none;
    width: 800px;
+
+   ::-webkit-scrollbar {
+      display: none;
+   }
+
+   article {
+      padding: 0 15px 15px 15px;
+   }
+
+   h1 {
+      font-size: 1.7em;
+   }
+
+   h2 {
+      font-size: 1.5em;
+   }
+
+   p {
+      font-size: 1em;
+   }
+
+   ${mediaQueries.laptop`
+      article {
+         padding: 0 2rem 2rem 2rem;
+      }
+   `}
+
+   // Force element to middle of screen on mobile
+   @media (max-width: 848px) {
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+   }
 `
 
 const Heading = styled.h1`
    text-align: center;
-   margin: 10px 0;
+   margin: 1rem 0;
 `
 
 const Exit = styled.span`
@@ -242,6 +280,15 @@ const Windowed = styled.span`
       width: 15px;
    }
 
+   :hover,
+   :focus {
+      ::before,
+      ::after {
+         opacity: 1 !important;
+         border: 2px solid var(--dark-green) !important;
+      }
+   }
+
    ::before {
       bottom: 13px;
       left: 11px;
@@ -254,11 +301,12 @@ const Windowed = styled.span`
 `
 
 const Actions = styled.div`
+   background-color: #000;
    border-bottom: 2px solid var(--matrix-green);
    cursor: pointer;
    display: flex;
    justify-content: flex-end;
-   position: absolute;
+   position: sticky;
    right: 0;
    top: 0;
    width: 100%;

@@ -46,7 +46,7 @@ const GlobalStyle = createGlobalStyle`
       'Open Sans', 'Helvetica Neue', sans-serif;
   }
 
-  * {
+  *:not(html) {
     color: var(--matrix-green);
     box-sizing: border-box;
   }
