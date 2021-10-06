@@ -250,6 +250,15 @@ const Exit = styled.span`
       width: 3px;
    }
 
+   :hover,
+   :focus {
+      ::before,
+      ::after {
+         opacity: 1;
+         background-color: var(--dark-green);
+      }
+   }
+
    ::before {
       transform: rotate(45deg);
    }
@@ -288,8 +297,8 @@ const Windowed = styled.span`
    :focus {
       ::before,
       ::after {
-         opacity: 1 !important;
-         border: 2px solid var(--dark-green) !important;
+         opacity: 1;
+         border: 2px solid var(--dark-green);
       }
    }
 
@@ -322,14 +331,6 @@ const Actions = styled.div`
       display: inline-block;
       height: 35px;
       width: 35px;
-
-      :hover,
-      :focus {
-         ::before,
-         ::after {
-            opacity: 0.6;
-         }
-      }
    }
 
    ${FullScreen},
@@ -337,5 +338,13 @@ const Actions = styled.div`
       border-left: 2px solid var(--matrix-green);
       border-right: 2px solid var(--matrix-green);
       position: relative;
+
+      :hover,
+      :focus {
+         ::before,
+         ::after {
+            border: 2px solid var(--dark-green);
+         }
+      }
    }
 `
