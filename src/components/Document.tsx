@@ -132,6 +132,7 @@ const Document: FC<IDocument> = ({ children, file, setFilesOpened }) => {
    return (
       <Wrapper
          role='dialog'
+         aria-label={`${file} dialog box`}
          ref={wrapperElem}
          style={{
             top: isFullScreen ? '0' : position.top || '50%',

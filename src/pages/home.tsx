@@ -219,7 +219,8 @@ const OpenFile = styled.button`
    padding: 0.5em;
    width: 10em;
 
-   :hover {
+   :hover,
+   :focus {
       animation-play-state: paused;
       border: 5px solid var(--dark-green);
       color: var(--dark-green);
@@ -227,7 +228,7 @@ const OpenFile = styled.button`
       opacity: 1 !important;
    }
 
-   ${mediaQueries.laptop`
+   ${mediaQueries.laptop`  
       margin: 2rem 0;
    `}
 `

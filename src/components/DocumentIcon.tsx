@@ -134,7 +134,7 @@ const DocumentIcon: FC<IDocument> = ({
    return (
       <Wrapper
          role='button'
-         tabIndex={filesOpened.length > 0 ? -1 : 0}
+         tabIndex={0}
          id={name.split('.')[0]}
          onPointerDown={handlePointerDown}
          onDoubleClick={openFile}
@@ -145,9 +145,9 @@ const DocumentIcon: FC<IDocument> = ({
             left: getWindowWidth() > 848 ? position.left || '0' : index * 185,
          }}
       >
-         <Icon />
+         <Icon aria-labelledby={name} />
 
-         <p>{name}</p>
+         <p id={name}>{name}</p>
       </Wrapper>
    )
 }
