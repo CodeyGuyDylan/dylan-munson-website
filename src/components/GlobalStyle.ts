@@ -70,6 +70,32 @@ const GlobalStyle = createGlobalStyle`
     font-size: calc(var(--regular-text) * var(--mobile-text-shrink));
   }
 
+  a {
+    :hover {
+      color: red;
+    }
+  }
+
+  ul {
+    list-style: none;
+   padding-left: 30px;
+
+   li {
+      padding: 10px 0;
+      position: relative;
+
+      ::before {
+         background-color: var(--matrix-green);
+         content: '';
+         height: 2px;
+         left: -20px;
+         position: absolute;
+         top: 20px;
+         width: 10px;
+      }
+   }
+  }
+
   ${mediaQueries.laptop`
     h1 {
       font-size: var(--heading-one);

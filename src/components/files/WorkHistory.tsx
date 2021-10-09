@@ -71,16 +71,21 @@ const WorkHistory: FC = () => {
                <Job key={title}>
                   <h3>{title}</h3>
 
-                  <p>Position: {position}</p>
-
-                  <p>Where: {where}</p>
-
                   <p>
-                     When: <time>{startDate}</time> - <time>{endDate}</time>
+                     <b>Position:</b> {position}
                   </p>
 
                   <p>
-                     Reference: <br />
+                     <b>Where:</b> {where}
+                  </p>
+
+                  <p>
+                     <b>When:</b> <time>{startDate}</time> -{' '}
+                     <time>{endDate}</time>
+                  </p>
+
+                  <p>
+                     <b>References:</b> <br />
                      {references.map(reference => (
                         <Fragment>
                            {reference} <br />
@@ -89,13 +94,13 @@ const WorkHistory: FC = () => {
                   </p>
 
                   <p>
-                     Responsibilities: <br />
+                     <b>Responsibilities:</b> <br />
                      {responsibilities}
                   </p>
                </Job>
             )
          })}
-       
+
          <h2>Boring Jobs</h2>
 
          <hr />
@@ -115,18 +120,25 @@ const WorkHistory: FC = () => {
                <Job key={title}>
                   <h3>{title}</h3>
 
-                  <p>Position: {position}</p>
-
-                  <p>Where: {where}</p>
-
                   <p>
-                     When: <time>{startDate}</time> - <time>{endDate}</time>
+                     <b>Position:</b> {position}
                   </p>
 
-                  <p>Reference: {reference}</p>
+                  <p>
+                     <b>Where:</b> {where}
+                  </p>
 
                   <p>
-                     Responsibilities: <br />
+                     <b>When:</b> <time>{startDate}</time> -{' '}
+                     <time>{endDate}</time>
+                  </p>
+
+                  <p>
+                     <b>Reference:</b> {reference}
+                  </p>
+
+                  <p>
+                     <b>Responsibilities:</b> <br />
                      {responsibilities}
                   </p>
                </Job>

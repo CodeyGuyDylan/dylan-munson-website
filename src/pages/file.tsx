@@ -1,5 +1,5 @@
 // Libraries
-import { FC, useState, useEffect } from 'react'
+import { FC, useState } from 'react'
 import styled from 'styled-components'
 import {
    FaBook,
@@ -11,9 +11,10 @@ import {
 } from 'react-icons/fa'
 
 // Components
-import DocumentIcon from '../components/DocumentIcon'
-import Document from '../components/Document'
 import About from '../components/files/About'
+import Document from '../components/Document'
+import DocumentIcon from '../components/DocumentIcon'
+import Education from '../components/files/Education'
 import WorkHistory from '../components/files/WorkHistory'
 
 // Helper
@@ -31,20 +32,16 @@ const documents = [
 const File: FC = () => {
    const [filesOpened, setFilesOpened] = useState<string[]>([])
 
-   useEffect(() => {
-      setInterval(() => {
-         console.log(document.activeElement)
-      }, 1000)
-   })
-
    const getComponent = (file: string) => {
       switch (file) {
          case 'about':
             return <About />
          case 'work-history':
             return <WorkHistory />
+         case 'education':
+            return <Education />
          default:
-            return <div></div>
+            return <></>
       }
    }
 
