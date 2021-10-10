@@ -45,6 +45,17 @@ const Skills: FC = () => {
             <li>Redux</li>
          </ul>
 
+         <h2>Databases</h2>
+
+         <hr />
+
+         <ul>
+            <li>
+               <abbr>MSSQL</abbr>
+            </li>
+            <li>Mongo DB</li>
+         </ul>
+
          <h2>Hosting</h2>
 
          <hr />

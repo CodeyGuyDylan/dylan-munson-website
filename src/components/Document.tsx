@@ -63,10 +63,6 @@ const Document: FC<IDocument> = ({ children, file, setFilesOpened }) => {
       const newLeft = ((position.left as number) || 0) + e.movementX
       const newTop = ((position.top as number) || 0) + e.movementY
 
-      console.log(`Position: ${position.left}x ${position.top}y`)
-      console.log(`New left: ${newLeft}`)
-      console.log(`New Top: ${newTop}`)
-
       const wrapper = wrapperElem.current!
       const { clientWidth, clientHeight } = wrapper
 
@@ -82,17 +78,11 @@ const Document: FC<IDocument> = ({ children, file, setFilesOpened }) => {
       }
       // Calculate original left value to smooth conversion from % to px
       const computedLeft = getComputedStyle('left')
-      console.log('Computed left: ' + computedLeft)
-
       const originalLeft = computedLeft - clientWidth / 2
-      console.log(`Original Left: ${originalLeft}`)
 
       // Calculate original top value to smooth conversion from % to px
       const computedTop = getComputedStyle('top')
-      console.log('Computed Top: ' + computedTop)
-
       const originalTop = computedTop - clientHeight / 2
-      console.log(`Original Top: ${originalTop}`)
 
       // Determins if the window should be able to be dragged
       const shouldMove =
