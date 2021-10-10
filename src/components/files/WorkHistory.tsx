@@ -56,7 +56,7 @@ const WorkHistory: FC = () => {
 
          <hr />
 
-         {relevant.map(job => {
+         {relevant.map((job, index) => {
             const {
                title,
                position,
@@ -68,7 +68,7 @@ const WorkHistory: FC = () => {
             } = job
 
             return (
-               <Job key={title}>
+               <Job key={`${title}${index}`}>
                   <h3>{title}</h3>
 
                   <p>
@@ -87,7 +87,7 @@ const WorkHistory: FC = () => {
                   <p>
                      <b>References:</b> <br />
                      {references.map(reference => (
-                        <Fragment>
+                        <Fragment key={reference}>
                            {reference} <br />
                         </Fragment>
                      ))}
@@ -105,7 +105,7 @@ const WorkHistory: FC = () => {
 
          <hr />
 
-         {boring.map(job => {
+         {boring.map((job, index) => {
             const {
                title,
                position,
@@ -117,7 +117,7 @@ const WorkHistory: FC = () => {
             } = job
 
             return (
-               <Job key={title}>
+               <Job key={`${title}${index}`}>
                   <h3>{title}</h3>
 
                   <p>

@@ -20,6 +20,7 @@ interface IDocument {
 const Document: FC<IDocument> = ({ children, file, setFilesOpened }) => {
    const [isFullScreen, setIsFullScreen] = useState<boolean>(false)
    const [isDragging, setIsDragging] = useState<boolean>(false)
+   const [hasSetPosition, setHasSetPosition] = useState<boolean>(false)
    const [position, setPosition] = useState<{
       top: number | null | string
       left: number | null | string
@@ -59,8 +60,12 @@ const Document: FC<IDocument> = ({ children, file, setFilesOpened }) => {
    }
 
    const onDragMove = (e: PointerEvent) => {
-      const newLeft = (position.left as number) + e.movementX
-      const newTop = (position.top as number) + e.movementY
+      const newLeft = ((position.left as number) || 0) + e.movementX
+      const newTop = ((position.top as number) || 0) + e.movementY
+
+      console.log(`Position: ${position.left}x ${position.top}y`)
+      console.log(`New left: ${newLeft}`)
+      console.log(`New Top: ${newTop}`)
 
       const wrapper = wrapperElem.current!
       const { clientWidth, clientHeight } = wrapper
@@ -77,18 +82,25 @@ const Document: FC<IDocument> = ({ children, file, setFilesOpened }) => {
       }
       // Calculate original left value to smooth conversion from % to px
       const computedLeft = getComputedStyle('left')
+      console.log('Computed left: ' + computedLeft)
+
       const originalLeft = computedLeft - clientWidth / 2
+      console.log(`Original Left: ${originalLeft}`)
 
       // Calculate original top value to smooth conversion from % to px
       const computedTop = getComputedStyle('top')
+      console.log('Computed Top: ' + computedTop)
+
       const originalTop = computedTop - clientHeight / 2
+      console.log(`Original Top: ${originalTop}`)
 
       // Determins if the window should be able to be dragged
       const shouldMove =
          !isFullScreen &&
          newLeft > 0 &&
          newTop > 0 &&
-         newLeft < innerWidth - clientWidth
+         newLeft < innerWidth - clientWidth &&
+         hasSetPosition
 
       if (position.left && position.top) {
          if (shouldMove) {
@@ -102,6 +114,7 @@ const Document: FC<IDocument> = ({ children, file, setFilesOpened }) => {
             left: originalLeft,
             top: originalTop,
          })
+         setHasSetPosition(true)
       }
    }
 
@@ -200,6 +213,7 @@ const Wrapper = styled.div`
 
    article {
       padding: 0 15px 15px 15px;
+      z-index: 0;
    }
 
    h1 {
@@ -324,6 +338,7 @@ const Actions = styled.div`
    right: 0;
    top: 0;
    width: 100%;
+   z-index: 1;
 
    ${FullScreen},
    ${Exit},

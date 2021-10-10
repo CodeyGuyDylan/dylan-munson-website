@@ -77,8 +77,10 @@ const GlobalStyle = createGlobalStyle`
   }
 
   ul {
+    position: relative;
     list-style: none;
-   padding-left: 30px;
+    padding-left: 30px;
+  
 
    li {
       padding: 10px 0;

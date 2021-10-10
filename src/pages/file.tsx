@@ -15,6 +15,8 @@ import About from '../components/files/About'
 import Document from '../components/Document'
 import DocumentIcon from '../components/DocumentIcon'
 import Education from '../components/files/Education'
+import Portfolio from '../components/files/Portfolio'
+import Skills from '../components/files/Skills'
 import WorkHistory from '../components/files/WorkHistory'
 
 // Helper
@@ -40,6 +42,10 @@ const File: FC = () => {
             return <WorkHistory />
          case 'education':
             return <Education />
+         case 'skills':
+            return <Skills />
+         case 'portfolio':
+            return <Portfolio />
          default:
             return <></>
       }
@@ -84,10 +90,3 @@ const Documents = styled.main`
       display: initial;
    `}
 `
-
-// Douments
-// contact.dm
-// about.dm
-// work-history.dm
-// eduction.dm
-// skills.dm
