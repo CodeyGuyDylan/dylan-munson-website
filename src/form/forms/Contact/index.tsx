@@ -48,21 +48,26 @@ const Contact: ContactType = () => {
                .max(1000, 'No more than 1000 charcaters are allowed')
                .required('A brief message about your inquiry is required'),
          }}
-         onSubmit={async (values, { resetForm, setSubmitting }) => {
-            //const { firstName, lastName, email, phone, message } = values
-
+         onSubmit={(values, { resetForm, setSubmitting }) => {
             submitToNtl(
                values,
                'contact-form',
                'Personal Website Form Submission'
             )
+               .then(() => {
+                  resetForm()
+                  setSubmitting(false)
+               })
+               .catch(e => {
+                  console.log(e)
+               })
          }}
          netlify
       >
          <fieldset>
             <legend>Contact me!</legend>
             <p>
-               Whether you are a recruiter, someone looking for webwork, or
+               Whether you are a recruiter, someone looking for web work, or
                thought this website was so cool that you just have to be my
                friend, contact me and let me know what you need :)
             </p>
