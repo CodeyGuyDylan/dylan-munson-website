@@ -36,8 +36,6 @@ const File: FC = () => {
    const [filesOpened, setFilesOpened] = useState<string[]>([])
    const [activeFile, setActiveFile] = useState<string>('')
 
-   console.log(activeFile)
-
    const getComponent = (file: string) => {
       switch (file) {
          case 'about':
