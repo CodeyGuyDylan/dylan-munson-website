@@ -12,6 +12,7 @@ import {
 
 // Components
 import About from '../components/files/About'
+import Contact from '../components/files/Contact'
 import Document from '../components/Document'
 import DocumentIcon from '../components/DocumentIcon'
 import Education from '../components/files/Education'
@@ -46,6 +47,8 @@ const File: FC = () => {
             return <Skills />
          case 'portfolio':
             return <Portfolio />
+         case 'contact':
+            return <Contact />
          default:
             return <></>
       }
@@ -83,7 +86,7 @@ export default File
 const Documents = styled.main`
    display: grid;
    grid-template-columns: repeat(auto-fit, 175px);
-   margin-top: 35px;
+   margin: 35px 15px 0 15px;
    gap: 2rem 1rem;
 
    ${mediaQueries.laptop`

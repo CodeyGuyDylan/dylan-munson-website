@@ -54,6 +54,7 @@ const DocumentIcon: FC<IDocument> = ({
 
    // Opens file on click
    const openFile = () => {
+      window.scrollTo(0, 0)
       setFileOpened(addFileToArray)
    }
 

@@ -66,6 +66,8 @@ const Portfolio: FC = () => {
 
          <h2>Other Projects</h2>
 
+         <hr />
+
          <h3>Netlify Builds Fitbit App</h3>
 
          <p>

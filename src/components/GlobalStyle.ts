@@ -62,7 +62,7 @@ const GlobalStyle = createGlobalStyle`
     font-size: calc(var(--heading-two) * var(--mobile-text-shrink));
   }
 
-  h3 {
+  h3, button {
     font-size: calc(var(--heading-three) * var(--mobile-text-shrink));
   }
 
@@ -108,7 +108,7 @@ const GlobalStyle = createGlobalStyle`
       font-size: var(--heading-two);
     }
 
-    h3 {
+    h3, button {
       font-size: var(--heading-three);
     }
 
