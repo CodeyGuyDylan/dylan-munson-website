@@ -15,7 +15,7 @@ interface IDocument {
    index: number
    name: string
    Icon: IconType
-   filesOpened: string[]
+   setActiveFile: Dispatch<SetStateAction<string>>
    setFileOpened: Dispatch<SetStateAction<string[]>>
 }
 
@@ -25,7 +25,7 @@ const DocumentIcon: FC<IDocument> = ({
    index,
    name,
    Icon,
-   filesOpened,
+   setActiveFile,
    setFileOpened,
 }) => {
    const [isDragging, setIsDragging] = useState<boolean>(false)
@@ -44,6 +44,8 @@ const DocumentIcon: FC<IDocument> = ({
    // Adds file to array if not already added
    const addFileToArray = (arr: string[]) => {
       const fileName = name.split('.')[0]
+
+      setActiveFile(fileName)
 
       if (arr.indexOf(fileName) === -1) {
          return [...arr, fileName]

@@ -14,10 +14,18 @@ import mediaQueries from '../helper/mediaQueries'
 interface IDocument {
    children: ReactNode
    file: string
+   isActive: boolean
+   setActiveFile: Dispatch<SetStateAction<string>>
    setFilesOpened: Dispatch<SetStateAction<string[]>>
 }
 
-const Document: FC<IDocument> = ({ children, file, setFilesOpened }) => {
+const Document: FC<IDocument> = ({
+   children,
+   file,
+   isActive,
+   setActiveFile,
+   setFilesOpened,
+}) => {
    const [isFullScreen, setIsFullScreen] = useState<boolean>(false)
    const [isDragging, setIsDragging] = useState<boolean>(false)
    const [hasSetPosition, setHasSetPosition] = useState<boolean>(false)
@@ -110,6 +118,7 @@ const Document: FC<IDocument> = ({ children, file, setFilesOpened }) => {
 
    const handlePointerDown = () => {
       setIsDragging(true)
+      setActiveFile(file)
    }
 
    const handlePointerUp = () => {
@@ -147,6 +156,7 @@ const Document: FC<IDocument> = ({ children, file, setFilesOpened }) => {
             width: isFullScreen ? '100vw' : '800px',
             height: isFullScreen ? '100vh' : '90vh',
             maxWidth: isFullScreen ? '100vw' : '90vw',
+            zIndex: isActive ? 1000 : 0,
          }}
       >
          <Actions onPointerDown={handlePointerDown}>

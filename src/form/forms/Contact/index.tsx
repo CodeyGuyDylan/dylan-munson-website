@@ -56,8 +56,6 @@ const Contact: ContactType = () => {
                'contact-form',
                'Personal Website Form Submission'
             )
-
-   
          }}
          netlify
       >

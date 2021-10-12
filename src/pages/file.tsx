@@ -34,6 +34,9 @@ const documents = [
 
 const File: FC = () => {
    const [filesOpened, setFilesOpened] = useState<string[]>([])
+   const [activeFile, setActiveFile] = useState<string>('')
+
+   console.log(activeFile)
 
    const getComponent = (file: string) => {
       switch (file) {
@@ -65,7 +68,7 @@ const File: FC = () => {
                      key={name}
                      name={name}
                      Icon={icon}
-                     filesOpened={filesOpened}
+                     setActiveFile={setActiveFile}
                      setFileOpened={setFilesOpened}
                   />
                )
@@ -73,7 +76,13 @@ const File: FC = () => {
          </Documents>
 
          {filesOpened.map(file => (
-            <Document key={file} setFilesOpened={setFilesOpened} file={file}>
+            <Document
+               key={file}
+               setFilesOpened={setFilesOpened}
+               setActiveFile={setActiveFile}
+               isActive={activeFile === file}
+               file={file}
+            >
                {getComponent(file)}
             </Document>
          ))}
