@@ -1,6 +1,9 @@
 // Libraries
 import * as Yup from 'yup'
 
+// Api
+import { submitToNtl } from '../../../api/submitToNetlify'
+
 // Components
 import FormWrapper from '../../components/FormWrapper'
 import TextInput from '../../components/TextInput'
@@ -46,9 +49,15 @@ const Contact: ContactType = () => {
                .required('A brief message about your inquiry is required'),
          }}
          onSubmit={async (values, { resetForm, setSubmitting }) => {
-           const { firstName, lastName, email, phone, message } = values
+            //const { firstName, lastName, email, phone, message } = values
 
-           console.log(values)
+            submitToNtl(
+               values,
+               'contact-form',
+               'Personal Website Form Submission'
+            )
+
+   
          }}
          netlify
       >
@@ -56,8 +65,8 @@ const Contact: ContactType = () => {
             <legend>Contact me!</legend>
             <p>
                Whether you are a recruiter, someone looking for webwork, or
-               thought this website was so cool that you just have to be my friend,
-               contact me and let me know what you need :)
+               thought this website was so cool that you just have to be my
+               friend, contact me and let me know what you need :)
             </p>
             <TextInput
                label='First name'

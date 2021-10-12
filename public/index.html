@@ -1,21 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.svg" sizes="any" type="image/svg+xml" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#39ff14" />
-    <meta
-      name="description"
-      content="A website created for use as Dylan Munson's online resume"
-    />
-    <meta name='author' content='Dylan Munson' />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.svg" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>Dylan Munson</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-  </body>
+   <head>
+      <meta charset="utf-8" />
+      <link
+         rel="icon"
+         href="%PUBLIC_URL%/favicon.svg"
+         sizes="any"
+         type="image/svg+xml"
+      />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="theme-color" content="#39ff14" />
+      <meta
+         name="description"
+         content="A website created for use as Dylan Munson's online resume"
+      />
+      <meta name="author" content="Dylan Munson" />
+      <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.svg" />
+      <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+      <title>Dylan Munson</title>
+   </head>
+   <body>
+      <noscript>You need to enable JavaScript to run this app.</noscript>
+      <div id="root"></div>
+      <form
+         name="contact-form"
+         data-netlify="true"
+         netlify-honeypot="bot-field"
+         hidden
+      >
+         <input
+            name="subject"
+            value="Personal Website Form Submission"
+            hidden
+         />
+         <input name="bot-field" hidden />
+         <input name="form-name" value="contact-form" hidden />
+         <input name="firstName" />
+         <input name="lastName" />
+         <input type="email" name="email" />
+         <input type="tel" name="phone" />
+         <textarea name="message"></textarea>
+      </form>
+   </body>
 </html>
