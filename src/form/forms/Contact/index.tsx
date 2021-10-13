@@ -17,7 +17,7 @@ import { invalidEmailMsg, phoneRegex } from '../../helper/validation'
 import { ContactType } from './types'
 import { ObjectShape } from 'yup/lib/object'
 
-const Contact: ContactType = ({ setIsAlertVisible }) => {
+const Contact: ContactType = ({ setAlert }) => {
    // Automatically fill out name and email fields if user is logged in
    const initialValues = {
       firstName: '',
@@ -68,14 +68,31 @@ const Contact: ContactType = ({ setIsAlertVisible }) => {
                      .then(() => {
                         resetForm()
                         setSubmitting(false)
-                        setIsAlertVisible(true)
+                        setAlert({
+                           visible: true,
+                           message:
+                              'Form was successfully submitted, I will get back to you shortly!',
+                           type: 'success',
+                        })
                      })
                      .catch(e => {
-                        console.log(e)
+                        console.error(e)
+
+                        setAlert({
+                           visible: true,
+                           message: 'The confirmation email failed to send',
+                           type: 'error',
+                        })
                      })
                })
                .catch(e => {
-                  console.log(e)
+                  console.error(e)
+
+                  setAlert({
+                     visible: true,
+                     message: 'Something went wrong, submission failed',
+                     type: 'error',
+                  })
                })
          }}
          netlify

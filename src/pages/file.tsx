@@ -23,6 +23,9 @@ import WorkHistory from '../components/files/WorkHistory'
 // Helper
 import mediaQueries from '../helper/mediaQueries'
 
+// Types
+import { AlertType } from '../../global'
+
 const documents = [
    { name: 'about.txt', icon: FaBook },
    { name: 'work-history.txt', icon: FaLaptopCode },
@@ -32,10 +35,18 @@ const documents = [
    { name: 'contact.html', icon: FaPhoneAlt },
 ]
 
+const alertInit: AlertType = {
+   visible: false,
+   message: '',
+   type: 'error',
+}
+
 const File: FC = () => {
    const [filesOpened, setFilesOpened] = useState<string[]>([])
    const [activeFile, setActiveFile] = useState<string>('')
-   const [isAlertVisible, setIsAlertVisible] = useState<boolean>(false)
+   const [alert, setAlert] = useState<AlertType>(alertInit)
+
+   const { visible, message, type } = alert
 
    const getComponent = (file: string) => {
       switch (file) {
@@ -50,7 +61,7 @@ const File: FC = () => {
          case 'portfolio':
             return <Portfolio />
          case 'contact':
-            return <Contact setIsAlertVisible={setIsAlertVisible} />
+            return <Contact setAlert={setAlert} />
          default:
             return <></>
       }
@@ -59,25 +70,23 @@ const File: FC = () => {
    useEffect(() => {
       let timer: ReturnType<typeof setTimeout>
 
-      if (isAlertVisible) {
+      if (visible) {
          timer = setTimeout(() => {
-            setIsAlertVisible(false)
+            setAlert(alertInit)
          }, 3000)
       }
 
       return () => {
          clearTimeout(timer)
       }
-   }, [isAlertVisible])
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [alert])
 
    return (
       <>
-         {isAlertVisible && (
-            <Alert role='dialog'>
-               <AlertMessage role='alert'>
-                  Form was successfully submitted, I will get back to you
-                  shortly!
-               </AlertMessage>
+         {visible && (
+            <Alert type={type} role='dialog'>
+               <AlertMessage role='alert'>{message}</AlertMessage>
             </Alert>
          )}
 
@@ -125,8 +134,9 @@ const Documents = styled.main`
    `}
 `
 
-const Alert = styled.div`
-   background-color: var(--matrix-green);
+const Alert = styled.div<{ type: 'error' | 'success' }>`
+   background-color: ${props =>
+      props.type === 'success' ? 'var(--matrix-green)' : 'red'};
    top: 20px;
    padding: 10px;
    position: fixed;

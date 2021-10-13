@@ -2,14 +2,17 @@ import { Dispatch, FC, SetStateAction } from 'react'
 
 import ContactForm from '../../form/forms/Contact'
 
+// Types
+import { AlertType } from '../../../global'
+
 interface IContact {
-   setIsAlertVisible: Dispatch<SetStateAction<boolean>>
+   setAlert: Dispatch<SetStateAction<AlertType>>
 }
 
-const Contact: FC<IContact> = ({ setIsAlertVisible }) => {
+const Contact: FC<IContact> = ({ setAlert }) => {
    return (
       <>
-         <ContactForm setIsAlertVisible={setIsAlertVisible} />
+         <ContactForm setAlert={setAlert} />
       </>
    )
 }
