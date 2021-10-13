@@ -3,6 +3,7 @@ import * as Yup from 'yup'
 
 // Api
 import { submitToNtl } from '../../../api/submitToNetlify'
+import { sendFormData } from '../../../api/serverless-functions'
 
 // Components
 import FormWrapper from '../../components/FormWrapper'
@@ -49,15 +50,29 @@ const Contact: ContactType = ({ setIsAlertVisible }) => {
                .required('A brief message about your inquiry is required'),
          }}
          onSubmit={(values, { resetForm, setSubmitting }) => {
+            const { firstName, email } = values
+
             submitToNtl(
                values,
                'contact-form',
                'Personal Website Form Submission'
             )
                .then(() => {
-                  resetForm()
-                  setSubmitting(false)
-                  setIsAlertVisible(true)
+                  sendFormData(
+                     `/.netlify/functions/submit-contact-form-background`,
+                     {
+                        firstName,
+                        email,
+                     }
+                  )
+                     .then(() => {
+                        resetForm()
+                        setSubmitting(false)
+                        setIsAlertVisible(true)
+                     })
+                     .catch(e => {
+                        console.log(e)
+                     })
                })
                .catch(e => {
                   console.log(e)
