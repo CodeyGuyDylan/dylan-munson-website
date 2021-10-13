@@ -24,7 +24,21 @@ export const Button = styled.button`
 `
 
 export const LoaderWrapper = styled.span`
+  align-items: center;
+  display: flex;
+  height: 56px;
+  justify-content: center;
+  width: 100px;
   svg {
-    animation: rotate 2s ease infinite;
+    animation: rotate 500ms ease infinite;
+
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg)
+      }
+      100% {
+        transform: rotate(360deg)
+      }
+    }
   }
 `

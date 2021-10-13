@@ -15,7 +15,7 @@ const SubmitButton: SubmitButtonType = ({ children }) => {
     <>
       {isSubmitting ? (
         <LoaderWrapper>
-          <FaCircleNotch width={50} height={50} />
+          <FaCircleNotch size={30} />
         </LoaderWrapper>
       ) : (
         <Button type='submit'>{children}</Button>

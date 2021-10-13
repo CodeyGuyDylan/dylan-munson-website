@@ -1,5 +1,5 @@
 // Libraries
-import { FC, useState } from 'react'
+import { FC, useState, useEffect } from 'react'
 import styled from 'styled-components'
 import {
    FaBook,
@@ -35,6 +35,7 @@ const documents = [
 const File: FC = () => {
    const [filesOpened, setFilesOpened] = useState<string[]>([])
    const [activeFile, setActiveFile] = useState<string>('')
+   const [isAlertVisible, setIsAlertVisible] = useState<boolean>(false)
 
    const getComponent = (file: string) => {
       switch (file) {
@@ -49,14 +50,37 @@ const File: FC = () => {
          case 'portfolio':
             return <Portfolio />
          case 'contact':
-            return <Contact />
+            return <Contact setIsAlertVisible={setIsAlertVisible} />
          default:
             return <></>
       }
    }
 
+   useEffect(() => {
+      let timer: ReturnType<typeof setTimeout>
+
+      if (isAlertVisible) {
+         timer = setTimeout(() => {
+            setIsAlertVisible(false)
+         }, 3000)
+      }
+
+      return () => {
+         clearTimeout(timer)
+      }
+   }, [isAlertVisible])
+
    return (
       <>
+         {isAlertVisible && (
+            <Alert role='dialog'>
+               <AlertMessage role='alert'>
+                  Form was successfully submitted, I will get back to you
+                  shortly!
+               </AlertMessage>
+            </Alert>
+         )}
+
          <Documents>
             {documents.map((document, index) => {
                const { name, icon } = document
@@ -99,4 +123,25 @@ const Documents = styled.main`
    ${mediaQueries.laptop`
       display: initial;
    `}
+`
+
+const Alert = styled.div`
+   background-color: var(--matrix-green);
+   top: 20px;
+   padding: 10px;
+   position: fixed;
+   right: calc(50% - 150px);
+   width: 300px;
+   z-index: 1001;
+
+   ${mediaQueries.laptop`
+      right: 20px;
+   `}
+`
+
+const AlertMessage = styled.p`
+   color: #000;
+   font-size: 1em;
+   margin: 0;
+   text-align: center;
 `

@@ -1,4 +1,8 @@
 // Libraries
-import { FC } from 'react'
+import { Dispatch, FC, SetStateAction } from 'react'
 
-export type ContactType = FC
+interface IContact {
+   setIsAlertVisible: Dispatch<SetStateAction<boolean>>
+}
+
+export type ContactType = FC<IContact>

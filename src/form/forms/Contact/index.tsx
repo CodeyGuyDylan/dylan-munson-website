@@ -16,7 +16,7 @@ import { invalidEmailMsg, phoneRegex } from '../../helper/validation'
 import { ContactType } from './types'
 import { ObjectShape } from 'yup/lib/object'
 
-const Contact: ContactType = () => {
+const Contact: ContactType = ({ setIsAlertVisible }) => {
    // Automatically fill out name and email fields if user is logged in
    const initialValues = {
       firstName: '',
@@ -57,6 +57,7 @@ const Contact: ContactType = () => {
                .then(() => {
                   resetForm()
                   setSubmitting(false)
+                  setIsAlertVisible(true)
                })
                .catch(e => {
                   console.log(e)

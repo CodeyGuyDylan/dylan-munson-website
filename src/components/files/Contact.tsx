@@ -1,11 +1,17 @@
-import { FC } from 'react'
+import { Dispatch, FC, SetStateAction } from 'react'
 
 import ContactForm from '../../form/forms/Contact'
 
-const Contact: FC = () => {
-  return (
-    <ContactForm />
-  )
+interface IContact {
+   setIsAlertVisible: Dispatch<SetStateAction<boolean>>
+}
+
+const Contact: FC<IContact> = ({ setIsAlertVisible }) => {
+   return (
+      <>
+         <ContactForm setIsAlertVisible={setIsAlertVisible} />
+      </>
+   )
 }
 
 export default Contact
