@@ -10,20 +10,23 @@ const FourOhFour: FC = () => {
    return (
       <>
          <SEO title='Oops!' description='Looks like this page doesnt exist' />
-         <Wrapper>            
+
+         <Wrapper>
             <TextWrapper>
-            <h1>Looks like this page doesnt exist!</h1>
-            <p>
-               Right now, there is only a <Link to='/'>Home</Link> page and a{' '}
-               <Link to='/file'>File</Link> page.
-            </p>
-            <p>
-               If you want this page to exist, feel free to contact me at{' '}
-               <a href='mailto:dylan@novysolutions.com'>
-                  dylan@novysolutions.com
-               </a>{' '}
-               and yell at me until I succumb to your demands
-            </p>
+               <h1>Looks like this page doesnt exist!</h1>
+
+               <p>
+                  Right now, there is only a <Link to='/'>Home</Link> page and a{' '}
+                  <Link to='/file'>File</Link> page.
+               </p>
+
+               <p>
+                  If you want this page to exist, feel free to contact me at{' '}
+                  <a href='mailto:dylan@novysolutions.com'>
+                     dylan@novysolutions.com
+                  </a>{' '}
+                  and yell at me until I succumb to your demands
+               </p>
             </TextWrapper>
          </Wrapper>
       </>
