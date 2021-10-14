@@ -1,6 +1,5 @@
 <svg id="e57CjDM9t6d1"
-  xmlns="http://www.w3.org/2000/svg"
-  xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 640 480" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
   <rect width="300" height="300" transform="matrix(1.6 0 0 1.6 80 0)" fill="rgb(0,0,0)"/>
   <rect width="50" height="50" transform="matrix(1 0 0 1 150 70)" fill="rgb(57,255,0)" />
   <rect width="50" height="50" transform="matrix(1 0 0 1 390 70)" fill="rgb(57,255,0)" />
