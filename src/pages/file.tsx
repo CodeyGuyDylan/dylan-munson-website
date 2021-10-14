@@ -17,6 +17,7 @@ import Document from '../components/Document'
 import DocumentIcon from '../components/DocumentIcon'
 import Education from '../components/files/Education'
 import Portfolio from '../components/files/Portfolio'
+import SEO from '../components/Seo'
 import Skills from '../components/files/Skills'
 import WorkHistory from '../components/files/WorkHistory'
 
@@ -84,6 +85,8 @@ const File: FC = () => {
 
    return (
       <>
+         <SEO title='File' />
+
          {visible && (
             <Alert type={type} role='dialog'>
                <AlertMessage role='alert'>{message}</AlertMessage>

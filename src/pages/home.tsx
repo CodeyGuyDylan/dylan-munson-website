@@ -9,6 +9,7 @@ import Profile from '../assets/placeholder-headshot.webp'
 // Components
 import Circuit from '../components/Circuit'
 import TypedWords from '../components/TypedWords'
+import SEO from '../components/Seo'
 
 // Helper
 import mediaQueries from '../helper/mediaQueries'
@@ -91,6 +92,8 @@ const Home: FC = () => {
 
    return (
       <ThemeProvider theme={theme}>
+         <SEO title='Home' />
+         
          <HomeWrapper>
             <Circuit />
 
