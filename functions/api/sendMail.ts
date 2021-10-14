@@ -1,13 +1,17 @@
-const nodemailer = require('nodemailer')
+import nodemailer, { Transporter } from 'nodemailer'
 
 const email = process.env.NODEMAILER_EMAIL
 const client = process.env.GOOGLE_SERVICE_ACCOUNT_CLIENT_ID
 const key = process.env.GOOGLE_SERVICE_ACCOUNT_KEY
 
-const sendMail = (mailto, body, subject) => {
+const sendMail: (
+   mailto: string,
+   body: string,
+   subject: string
+) => Promise<string | Error> = (mailto, body, subject) => {
    // Auth
    return new Promise(resolve => {
-      const transporter = nodemailer.createTransport({
+      const transporter: Transporter = nodemailer.createTransport({
          host: 'smtp.gmail.com',
          port: 465,
          secure: true,
@@ -38,4 +42,4 @@ const sendMail = (mailto, body, subject) => {
    })
 }
 
-module.exports = sendMail
+export default sendMail

@@ -3,10 +3,11 @@
   netlify functions:invoke submit-contact-form-background --payload "./functions/tests/contact-form-test-data.json" --identity
 */
 
-const sendMail = require('./api/sendMail')
-const removeHtml = require('./utils/removeHtml')
+import sendMail from './api/sendMail'
+import removeHtml from './utils/removeHtml'
+import { Handler } from '@netlify/functions'
 
-exports.handler = async event => {
+const handler: Handler = async event => {
    const body = JSON.parse(event.body)
 
    let { firstName = null, email = null } = body
@@ -53,3 +54,5 @@ exports.handler = async event => {
       }
    }
 }
+
+export { handler }
