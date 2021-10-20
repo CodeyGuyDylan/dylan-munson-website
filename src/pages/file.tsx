@@ -24,6 +24,9 @@ import WorkHistory from '../components/files/WorkHistory'
 // Helper
 import mediaQueries from '../helper/mediaQueries'
 
+// Hooks
+import useDisableScrolling from '../hooks/useDisableScrolling'
+
 // Types
 import { AlertType } from '../../global'
 
@@ -46,6 +49,9 @@ const File: FC = () => {
    const [filesOpened, setFilesOpened] = useState<string[]>([])
    const [activeFile, setActiveFile] = useState<string>('')
    const [alert, setAlert] = useState<AlertType>(alertInit)
+
+   // Disabled background scrolling on mobile if file is opened
+   useDisableScrolling(filesOpened.length > 0)
 
    const { visible, message, type } = alert
 

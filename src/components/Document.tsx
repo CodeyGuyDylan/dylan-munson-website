@@ -187,9 +187,11 @@ const Document: FC<IDocument> = ({
             />
          </Actions>
 
-         <Heading>{file.split('-').join(' ').toUpperCase()}</Heading>
+         <Doc>
+            <Heading>{file.split('-').join(' ').toUpperCase()}</Heading>
 
-         <article>{children}</article>
+            <article>{children}</article>
+         </Doc>
       </Wrapper>
    )
 }
@@ -202,14 +204,9 @@ const Wrapper = styled.div`
    border: 5px solid var(--matrix-green);
    height: 90vh;
    max-width: 90vw;
-   overflow-y: scroll;
+   overflow: hidden;
    position: absolute;
-   scrollbar-width: none;
    width: 800px;
-
-   ::-webkit-scrollbar {
-      display: none;
-   }
 
    article {
       padding: 0 15px 15px 15px;
@@ -243,6 +240,24 @@ const Wrapper = styled.div`
       top: 50% !important;
       left: 50% !important;
       transform: translate(-50%, -50%) !important;
+   }
+`
+
+const Doc = styled.div`
+   height: calc(100% - 40px);
+   max-width: calc(90vw - 10px);
+   width: 790px;
+   overflow-y: scroll;
+   word-wrap: break-word;
+
+   scrollbar-color: var(--matrix-green) black;
+
+   ::-webkit-scrollbar {
+      background: black;
+   }
+
+   ::-webkit-scrollbar-thumb {
+      background: var(--matrix-green);
    }
 `
 
@@ -334,7 +349,6 @@ const Actions = styled.div`
    cursor: pointer;
    display: flex;
    justify-content: flex-end;
-   position: sticky;
    right: 0;
    top: 0;
    width: 100%;

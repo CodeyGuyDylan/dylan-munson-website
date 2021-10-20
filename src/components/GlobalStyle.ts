@@ -76,6 +76,10 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  hr {
+    border-color: var(--matrix-green);
+  }
+
   ul {
     position: relative;
     list-style: none;
