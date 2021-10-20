@@ -177,7 +177,6 @@ const IntroBox = styled.section`
 
 const ProfileImg = styled.img`
    align-self: center;
-   height: 300px;
    margin: 10px 0;
    max-width: 100%;
    object-fit: cover;
