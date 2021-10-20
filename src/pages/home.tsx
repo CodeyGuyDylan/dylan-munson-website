@@ -4,7 +4,7 @@ import styled, { ThemeProvider } from 'styled-components'
 import { useHistory } from 'react-router-dom'
 
 // Assets
-import Profile from '../assets/placeholder-headshot.webp'
+import Profile from '../assets/dylan_matrix.webp'
 
 // Components
 import Circuit from '../components/Circuit'
@@ -182,6 +182,7 @@ const ProfileImg = styled.img`
    max-width: 100%;
    object-fit: cover;
    width: 100%;
+   border-radius: 50px;
 
    ${mediaQueries.laptop`
       margin: 1rem 0 0 0;
