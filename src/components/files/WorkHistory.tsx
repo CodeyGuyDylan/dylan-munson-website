@@ -31,8 +31,8 @@ const relevant = [
       startDate: `January 7, 2020`,
       endDate: `Current`,
       references: [
-         `Ed Detlifsen - IT Apps & Data Director - (208) 352-0253`,
-         `Kevin Mark - Chief IT Officer - (208) 965-3185`,
+         `Ed Ditlefsen - IT Apps & Data Director - (208) 352-0253`,
+         `Kevin Mark - Chief Information Officer - (208) 965-3185`,
       ],
       responsibilities: `Work with O365 applications such as PowerApps, SharePoint, and Power Automate. Work with Azure, specifically with Logic Apps and Function Apps written in C# and TypeScript. Work on public site (they use Cascade). Write PowerShell scripts, SQL queries, Classic ASP, Velocity, TypeScript, JavaScript, and Node.js for a variety of projects. Kind of the 'whatever needs to be done' person.`,
    },
