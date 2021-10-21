@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 
+// Loads low quality image first with a blur effect over it, then displays high quality when done loading
 const useProgressiveImg: (
    lowQualitySrc: string,
    highQualitySrc: string
