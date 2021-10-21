@@ -110,7 +110,7 @@ const Home: FC = () => {
 
                <Details>
                   <ProfileImg
-                     src={Profile}
+                     src={src}
                      alt='dylan munson file image'
                      width='300px'
                      height='387px'
