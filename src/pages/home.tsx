@@ -18,9 +18,19 @@ import mediaQueries from '../helper/mediaQueries'
 // Hooks
 import useProgressiveImg from '../hooks/useProgressiveImage'
 
+const calculateAge = () => {
+   const currDate = new Date()
+   const birthDate = new Date('05/13/1996')
+
+   const age = Math.floor(
+      (currDate.getTime() - birthDate.getTime()) / 31536000000
+   )
+   return age.toString()
+}
+
 const attrs = [
    { id: 1, name: 'Profession:', value: 'Front-End Web Developer' },
-   { id: 2, name: 'Age:', value: '25' },
+   { id: 2, name: 'Age:', value: calculateAge() },
    { id: 3, name: 'Height:', value: 'Tall' },
    { id: 4, name: 'Hair:', value: 'Brown' },
    { id: 5, name: 'Eyes:', value: 'Yes' },
@@ -49,6 +59,7 @@ const loadingMessages = [
 ]
 
 const Home: FC = () => {
+   console.log(calculateAge())
    const history = useHistory()
    const [isOpening, setIsOpening] = useState<boolean>(false)
 
