@@ -181,7 +181,6 @@ const ProfileImg = styled.img`
    max-width: 100%;
    object-fit: cover;
    width: 100%;
-   border-radius: 50px;
 
    ${mediaQueries.laptop`
       margin: 1rem 0 0 0;

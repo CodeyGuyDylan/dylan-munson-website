@@ -1,3 +1,4 @@
+// Libraries
 import {
    useState,
    useEffect,
@@ -9,6 +10,8 @@ import {
    KeyboardEvent,
 } from 'react'
 import styled from 'styled-components'
+
+// Helper
 import mediaQueries from '../helper/mediaQueries'
 
 interface IDocument {

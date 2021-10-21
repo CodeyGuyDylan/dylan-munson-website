@@ -1,5 +1,8 @@
+// Libraries
 import { FC, useEffect, useState } from 'react'
 import styled from 'styled-components'
+
+// Assets
 import background from '../assets/code.webp'
 
 const Circuit: FC = () => {

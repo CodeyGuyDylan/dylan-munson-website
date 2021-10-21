@@ -1,3 +1,4 @@
+// Libraries
 import { FC, useEffect, useState } from 'react'
 import styled, { CSSProperties } from 'styled-components'
 

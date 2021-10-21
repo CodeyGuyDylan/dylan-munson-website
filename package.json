@@ -1,7 +1,14 @@
 {
    "name": "dylan-munson-website",
-   "version": "0.1.0",
-   "private": true,
+   "author": "CodeyGuyDylan",
+   "keywords": [
+      "application",
+      "dylan",
+      "munson",
+      "personal website"
+   ],
+   "version": "1.0.0",
+   "private": false,
    "scripts": {
       "start": "react-scripts start",
       "build": "react-scripts build",

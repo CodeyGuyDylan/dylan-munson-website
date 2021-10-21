@@ -1,3 +1,4 @@
+// Libraries
 import {
    useState,
    Dispatch,
@@ -9,6 +10,8 @@ import {
 } from 'react'
 import { IconType } from 'react-icons'
 import styled from 'styled-components'
+
+// Helper
 import mediaQueries from '../helper/mediaQueries'
 
 interface IDocument {
