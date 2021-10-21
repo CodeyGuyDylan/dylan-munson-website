@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom'
 
 // Assets
 import Profile from '../assets/dylan_matrix.webp'
+import LowResProfile from '../assets/dylan_matrix_low.webp'
 
 // Components
 import Circuit from '../components/Circuit'
@@ -13,6 +14,9 @@ import SEO from '../components/Seo'
 
 // Helper
 import mediaQueries from '../helper/mediaQueries'
+
+// Hooks
+import useProgressiveImg from '../hooks/useProgressiveImage'
 
 const attrs = [
    { id: 1, name: 'Profession:', value: 'Front-End Web Developer' },
@@ -47,6 +51,8 @@ const loadingMessages = [
 const Home: FC = () => {
    const history = useHistory()
    const [isOpening, setIsOpening] = useState<boolean>(false)
+
+   const [src, { blur }] = useProgressiveImg(LowResProfile, Profile)
 
    // Allows all styled components to know if the user has clicked the open file button
    const theme = {
@@ -93,7 +99,7 @@ const Home: FC = () => {
    return (
       <ThemeProvider theme={theme}>
          <SEO title='Home' />
-         
+
          <HomeWrapper>
             <Circuit />
 
@@ -103,7 +109,16 @@ const Home: FC = () => {
                </h1>
 
                <Details>
-                  <ProfileImg src={Profile} alt='dylan munson headshot' />
+                  <ProfileImg
+                     src={Profile}
+                     alt='dylan munson file image'
+                     width='300px'
+                     height='387px'
+                     style={{
+                        filter: blur ? 'blur(20px)' : 'none',
+                        transition: blur ? 'none' : 'filter 0.3s ease-out',
+                     }}
+                  />
 
                   <Attributes>
                      {attrs.map((attr, i) => {
