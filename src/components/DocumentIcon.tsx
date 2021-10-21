@@ -20,6 +20,7 @@ interface IDocument {
    Icon: IconType
    setActiveFile: Dispatch<SetStateAction<string>>
    setFileOpened: Dispatch<SetStateAction<string[]>>
+   setHasClicked: Dispatch<SetStateAction<boolean>>
 }
 
 type PositionType = { top: number | null; left: number | null }
@@ -30,6 +31,7 @@ const DocumentIcon: FC<IDocument> = ({
    Icon,
    setActiveFile,
    setFileOpened,
+   setHasClicked,
 }) => {
    const [isDragging, setIsDragging] = useState<boolean>(false)
 
@@ -61,12 +63,14 @@ const DocumentIcon: FC<IDocument> = ({
    const openFile = () => {
       window.scrollTo(0, 0)
       setFileOpened(addFileToArray)
+      setHasClicked(true)
    }
 
    // Opens file on enter
    const keyboardOpenFile = (e: KeyboardEvent) => {
       if (e.key === 'Enter') {
          setFileOpened(addFileToArray)
+         setHasClicked(true)
       }
    }
 
@@ -160,7 +164,7 @@ const DocumentIcon: FC<IDocument> = ({
 
 export default DocumentIcon
 
-const Wrapper = styled.div`
+const Wrapper = styled.li`
    align-items: center;
    display: flex;
    flex-direction: column;
@@ -168,6 +172,11 @@ const Wrapper = styled.div`
    padding-top: 5px;
    user-select: none;
    width: 175px;
+
+   ::before {
+      width: 0;
+      height: 0;
+   }
 
    ${mediaQueries.laptop`
       position: absolute;

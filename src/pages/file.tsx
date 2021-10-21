@@ -49,6 +49,7 @@ const File: FC = () => {
    const [filesOpened, setFilesOpened] = useState<string[]>([])
    const [activeFile, setActiveFile] = useState<string>('')
    const [alert, setAlert] = useState<AlertType>(alertInit)
+   const [hasClicked, setHasClicked] = useState<boolean>(false)
 
    // Disabled background scrolling on mobile if file is opened
    useDisableScrolling(filesOpened.length > 0)
@@ -99,6 +100,8 @@ const File: FC = () => {
             </Alert>
          )}
 
+         {!hasClicked && <Tip>Double-click to open files</Tip>}
+
          <Documents>
             {documents.map((document, index) => {
                const { name, icon } = document
@@ -110,6 +113,7 @@ const File: FC = () => {
                      Icon={icon}
                      setActiveFile={setActiveFile}
                      setFileOpened={setFilesOpened}
+                     setHasClicked={setHasClicked}
                   />
                )
             })}
@@ -132,11 +136,12 @@ const File: FC = () => {
 
 export default File
 
-const Documents = styled.main`
+const Documents = styled.ul`
    display: grid;
    grid-template-columns: repeat(auto-fit, 175px);
-   margin: 35px 15px 0 15px;
+   margin: 35px 15px 0 0;
    gap: 2rem 1rem;
+   padding: 0;
 
    ${mediaQueries.laptop`
       display: initial;
@@ -163,4 +168,14 @@ const AlertMessage = styled.p`
    font-size: 1em;
    margin: 0;
    text-align: center;
+`
+
+const Tip = styled.span`
+   font-size: 1.8em;
+   left: 50%;
+   opacity: 0.6;
+   position: absolute;
+   top: 50%;
+   transform: translate(-50%, -50%);
+   user-select: none;
 `
