@@ -37,7 +37,7 @@ const About: FC = () => {
 
          <p>
             Since then, I have been learning every single day about programming
-            in general, but that majority of the learning was specific to web
+            in general, but the majority of the learning was specific to web
             development. A couple of friends and I started a business that
             primarily makes websites and logos where I do all the programming
             and they handle design mockups and the business end of things.
