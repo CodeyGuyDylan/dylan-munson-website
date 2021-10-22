@@ -110,7 +110,6 @@ const Contact: ContactType = ({ setAlert }) => {
                name='firstName'
                type='text'
                required
-               autoFocus={true}
             />
             <TextInput
                label='Last name'
