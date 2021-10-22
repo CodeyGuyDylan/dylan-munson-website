@@ -171,6 +171,7 @@ const AlertMessage = styled.p`
 `
 
 const Tip = styled.span`
+   display: none;
    font-size: 1.8em;
    left: 50%;
    opacity: 0.6;
@@ -178,4 +179,8 @@ const Tip = styled.span`
    top: 50%;
    transform: translate(-50%, -50%);
    user-select: none;
+
+   ${mediaQueries.laptop`
+      display: initial;
+   `}
 `

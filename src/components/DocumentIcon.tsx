@@ -172,6 +172,7 @@ const Wrapper = styled.li`
    padding-top: 5px;
    user-select: none;
    width: 175px;
+   position: unset;
 
    ::before {
       width: 0;
