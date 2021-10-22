@@ -139,12 +139,13 @@ export default File
 const Documents = styled.ul`
    display: grid;
    grid-template-columns: repeat(auto-fit, 175px);
-   margin: 35px 15px 0 0;
+   margin: 35px 15px 0 15px;
    gap: 2rem 1rem;
    padding: 0;
 
    ${mediaQueries.laptop`
       display: initial;
+      margin: 35px 15px 0 0;
    `}
 `
 
