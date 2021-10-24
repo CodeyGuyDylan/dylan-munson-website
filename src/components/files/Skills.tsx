@@ -22,7 +22,7 @@ const Skills: FC = () => {
          </ul>
 
          <h2>
-            Frameworks &amp; <abbr>SSG</abbr>'s
+            Frameworks &amp; Static Site Generators
          </h2>
 
          <hr />

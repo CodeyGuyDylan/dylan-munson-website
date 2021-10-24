@@ -14,7 +14,11 @@ const Education: FC = () => {
          </p>
 
          <p>
-            <b>University:</b> The College of Southern Idaho
+            <b>Year:</b> 2017
+         </p>
+
+         <p>
+            <b>School:</b> College of Southern Idaho
          </p>
 
          <p>
@@ -22,17 +26,14 @@ const Education: FC = () => {
          </p>
 
          <p>
-            <b>Years:</b> 2014-2017
-         </p>
-
-         <p>
-            <b>Details:</b> <br /> This was back when I wanted to be a
-            mechanical engineer. The most relevant class I took during college
-            that pertains to what I do now were two C++ classes. I enjoyed this
-            class the most, but I know now that it did kind of a bad job of
-            teaching me how to use the language in the real world for real
-            applications. It wasn't until later on when I got really into coding
-            and then web development.
+            <b>Details:</b> <br /> When I first started at CSI, I wanted to be a
+            mechanical engineer. The most relevant classes I took related to
+            programming were two C++ classes. I enjoyed these classes the most,
+            but I know now that they did an incomplete job of teaching me how to
+            use the language for real world applications. It wasn't until I
+            started working at CSI that I realized how to use the building
+            blocks in a programming language to develop something that was
+            actually useful.
          </p>
 
          <br />
@@ -46,15 +47,15 @@ const Education: FC = () => {
          </p>
 
          <p>
+            <b>Year:</b> 2014
+         </p>
+
+         <p>
             <b>School:</b> Twin Falls High School
          </p>
 
          <p>
             <b>Address:</b> 1615 Filer Ave E. Twin Falls, ID 83301
-         </p>
-
-         <p>
-            <b>Years:</b> 2011-2014
          </p>
 
          <br />
@@ -83,7 +84,7 @@ const Education: FC = () => {
                   target='_blank'
                   rel='noreferrer'
                >
-                  CodeCademy
+                  codecademy
                </a>
             </li>
             <li>
@@ -91,10 +92,7 @@ const Education: FC = () => {
                   Scrimba
                </a>
             </li>
-            <li>
-               Various YouTube tutorials about Express, TypeScript, Node.js,
-               etc.
-            </li>
+            <li>Tutorial videos on YouTube</li>
             <li>LOTS of reading documentation</li>
          </ul>
       </div>
