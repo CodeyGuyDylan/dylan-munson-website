@@ -19,7 +19,7 @@ const boring = [
       startDate: `May, 2018`,
       endDate: `January 2020`,
       reference: `Doug Birch - Manager - (208) 358-5439`,
-      responsibilities: `Unload trucks, organize the warehouse, manage all big equipment orders, stock shelves, inventory for entire warehouse and smallwares, smallwares deliveries, equipment deliveries, make price tags.`,
+      responsibilities: `I had a lot of different duties here. Most days I would use the forklift to unload trucks and then organize the inventory, then I would go on my smallwares deliveries to local restaurants around the area, and then I would get back and ready up and big deliveries coming up the next day. I had a lot of other small tasks such as making price tags, stocking the floor, taking inventory, etc. Despite being pretty boring of a job, I do think it helped me with my organizational skills`,
    },
 ]
 
@@ -34,7 +34,7 @@ const relevant = [
          `Ed Ditlefsen - Application & Data Director - (208) 352-0253`,
          `Kevin Mark - Chief Information Officer - (208) 965-3185`,
       ],
-      responsibilities: `Work with Microsoft Office 365 applications such as PowerApps, SharePoint, and Power Automate. Work with Azure, specifically with Logic Apps and Function Apps written in C# and TypeScript. Manage content for college website using Cascade CMS. Write PowerShell scripts, SQL queries, Classic ASP, Velocity, TypeScript, JavaScript, and Node.js for a variety of projects. Kind of the 'whatever needs to be done' person.`,
+      responsibilities: `I am currently a 'jack of all trades' type of worker here, though most people in IT at the college are. There aren't well defined roles, so my duties change often, but I feel as though it's given me exposure to a wide variety of tools and languages so I am thankful for it. I have worked with Microsoft Office 365 applications such as Powerapps, SharePoint, and Power Automate. I have gotten expsure in Azure in the areas of Azure Logic Apps and Azure Function apps written in C# and TypeScript. I have learned how to manage content in the Cascade CMS as well as write templates using Velocity. Some one off jobs have given me experience using MSSQL, writing PowerShell scripts, writing in Classic ASP, and JavaScript/Node.js. It has been a lot to keep up with doing different things every day, but I do think it has been beneficial in teaching me how to work in real applications.`,
    },
    {
       title: `Novy Solutions`,

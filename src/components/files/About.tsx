@@ -22,6 +22,9 @@ const About: FC = () => {
             Data Director. They were short staffed in IT, so he asked me to talk
             with him later about employment opportunities, and he later hired me
             as a Software Support Specialist in <time>January 2020</time>.
+            Though my work here started because of Microsoft PowerApps, I have
+            learned while here that I prefer to work in more code oriented
+            development rather than low-code no-code projects.
          </p>
          <p>
             My only earlier experience in web development was on a WordPress
