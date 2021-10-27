@@ -24,7 +24,7 @@ const websiteProjects = [
       stack:
          'Hosted on Netlify, built as a Single Page Application using Create React App, MongoDB to store form submissions, Netlify Forms as backup',
       desc:
-         "Our business website that we found time to make after the last two projects, it's a simple four page site that contains a contact form. Nothing too complicated with this one",
+         "Our business website that we found time to make after the last two projects, it's a simple four page site that contains a contact form. Nothing too complicated with this one.",
    },
    {
       name: 'Devore & Munn Realty',
@@ -32,7 +32,7 @@ const websiteProjects = [
       stack:
          'Hosted on Netlify, built with Gatsby, Netlify CMS, Netlify Forms and Nodemailer for emails',
       desc:
-         'A simple website for a Realty company that essentially wanted an "Online Business Card" and an way to contact them through a web form. Pretty simple site, just some information and a web form',
+         'A simple website for a Realty company that essentially wanted an "Online Business Card" and an way to contact them through a web form. Pretty simple site, just some information and a web form.',
    },
    {
       name: 'NV Farms',
@@ -100,7 +100,7 @@ const Portfolio: FC = () => {
             others. This app just lets me run builds for my websites from my
             fitbit. Since I have non programmers also making changes to sites,
             and sometimes automatic builds are not turned on, it is nice for me
-            to be able to do this without having to be at a computer
+            to be able to do this without having to be at a computer.
          </p>
       </div>
    )
