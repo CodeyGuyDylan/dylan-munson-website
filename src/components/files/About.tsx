@@ -18,7 +18,7 @@ const About: FC = () => {
             recently discovered that I wanted to be a full-time programmer.
             After helping one of my friends make a Microsoft PowerApp for his
             department at the College of Southern Idaho, I was in a meeting
-            explaining how the app worked to their <abbr>IT</abbr> Apps &amp;
+            explaining how the app worked to their <abbr title='Information Technology'>IT</abbr> Apps &amp;
             Data Director. They were short staffed in IT, so he asked me to talk
             with him later about employment opportunities, and he later hired me
             as a Software Support Specialist in <time>January 2020</time>.
@@ -31,7 +31,7 @@ const About: FC = () => {
             site I had done a couple of years prior, and I did get some C++ and
             JavaScript experience in college. I did not particularly like
             WordPress, so I had written off web design as something I wanted to
-            do. After I was hired at <abbr>CSI</abbr>, one of my co-workers
+            do. After I was hired at <abbr title='College of Southern Idaho'>CSI</abbr>, one of my co-workers
             shared a React tutorial in our team chat and I decided to look at
             it. With my earlier experience with JavaScript, I was able to catch
             on quickly and absolutely loved it.

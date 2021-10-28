@@ -21,9 +21,7 @@ const Skills: FC = () => {
             <li>Classic ASP</li>
          </ul>
 
-         <h2>
-            Frameworks &amp; Static Site Generators
-         </h2>
+         <h2>Frameworks &amp; Static Site Generators</h2>
 
          <hr />
 
@@ -52,7 +50,7 @@ const Skills: FC = () => {
 
          <ul>
             <li>
-               <abbr>MSSQL</abbr>
+               <abbr title='Microsoft Structured Query Language'>MSSQL</abbr>
             </li>
             <li>Mongo DB</li>
          </ul>
