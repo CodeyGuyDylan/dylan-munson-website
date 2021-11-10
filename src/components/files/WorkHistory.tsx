@@ -32,7 +32,7 @@ const relevant = [
       endDate: `Current`,
       references: [
          `Ed Ditlefsen - Application & Data Director - (208) 352-0253`,
-         `Kevin Mark - Chief Information Officer - (208) 965-3185`,
+         `Kevin Mark - Chief Information Officer`,
       ],
       responsibilities: `I am currently a 'jack of all trades' type of worker here, though most people in IT at the college are. There aren't well defined roles, so my duties change often, but I feel as though it's given me exposure to a wide variety of tools and languages so I am thankful for it. I have worked with Microsoft Office 365 applications such as Powerapps, SharePoint, and Power Automate. I have gotten expsure in Azure in the areas of Azure Logic Apps and Azure Function apps written in C# and TypeScript. I have learned how to manage content in the Cascade CMS as well as write templates using Velocity. Some one off jobs have given me experience using MSSQL, writing PowerShell scripts, writing in Classic ASP, and JavaScript/Node.js. It has been a lot to keep up with doing different things every day, but I do think it has been beneficial in teaching me how to work in real applications.`,
    },
