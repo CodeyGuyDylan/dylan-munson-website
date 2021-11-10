@@ -40,7 +40,7 @@ const relevant = [
       title: `Novy Solutions`,
       position: `Head Programmer / Co-Owner`,
       where: `Remote`,
-      startDate: `February 2020`,
+      startDate: `February 2020`, 
       endDate: `Current`,
       references: [
          `Elijah Jensen - Business Manager / Co-Owner - (208) 969-0496`,
