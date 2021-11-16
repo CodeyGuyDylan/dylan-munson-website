@@ -26,14 +26,14 @@ const websiteProjects = [
       desc:
          "Our business website that we found time to make after the last two projects, it's a simple four page site that contains a contact form. Nothing too complicated with this one.",
    },
-   {
-      name: 'Devore & Munn Realty',
-      url: 'https://devoremunn.com/',
-      stack:
-         'Hosted on Netlify, built with Gatsby, Netlify CMS, Netlify Forms and Nodemailer for emails',
-      desc:
-         'A simple website for a Realty company that essentially wanted an "Online Business Card" and an way to contact them through a web form. Pretty simple site, just some information and a web form.',
-   },
+   // {
+   //    name: 'Devore & Munn Realty',
+   //    url: 'https://devoremunn.com/',
+   //    stack:
+   //       'Hosted on Netlify, built with Gatsby, Netlify CMS, Netlify Forms and Nodemailer for emails',
+   //    desc:
+   //       'A simple website for a Realty company that essentially wanted an "Online Business Card" and an way to contact them through a web form. Pretty simple site, just some information and a web form.',
+   // },
    {
       name: 'NV Farms',
       url: 'https://boring-pike-11852a.netlify.app/',
