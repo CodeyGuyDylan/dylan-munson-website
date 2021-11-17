@@ -16,7 +16,7 @@ const websiteProjects = [
       stack:
          'Hosted on Netlify, built with Gatsby, Netlify CMS, Netlify Functions as "backend", Netlify Forms and Nodemailer for emails, Google Sheets Integration, Stripe for payments',
       desc:
-         'This site was for a client that wanted their message to be clear, and wanted their website to be an easy way to sign up for their annual symposium. They also wanted to easily be able to see who had signed up for this event. Since they were on a limited budget, we deciced to add form submissions to a Google Sheet that they could easily access instead of taking the time to set up a database and a front end for them to view the data. They also wanted to use this site to write blogs, display essay winners, ect. To fill this requirement I set up a CMS with Netlify CMS so they could easily do this on their own.',
+         'This site was for a client that wanted their message to be clear, and wanted their website to be an easy way to sign up for their annual symposium. They also wanted to easily be able to see who had signed up for this event. Since they were on a limited budget, we decided to add form submissions to a Google Sheet that they could easily access instead of taking the time to set up a database and a front end for them to view the data. They also wanted to use this site to write blogs, display essay winners, ect. To fill this requirement I set up a CMS with Netlify CMS so they could easily do this on their own.',
    },
    {
       name: 'Novy Solutions',
