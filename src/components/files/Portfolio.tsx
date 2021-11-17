@@ -8,7 +8,7 @@ const websiteProjects = [
       stack:
          'Hosted on Netlify, built with Gatsby, Google Drive integration, Netlify CMS, Netlify Functions as "backend", Netlify Forms and Nodemailer for emails',
       desc:
-         "My first ever website project. My supervisor at the College of Southern Idaho asked if anybody wanted to make a website for the Office On Aging because IT was so backed up we wouldn't be able to get to it for a long time. Me and one of my friends decided to use this as an opportunity to start a busniess and this would be our first project. This site is geared toward senior citizens and therefore the text is larger by default, and there is the option to increase it even more or decrease it. They wanted an easy way to add files to the site, and they already used Google Drive, so I set up integration so that they could easily add files to a Google Drive folder that would be displayed on the site as links in table form.",
+         "My first ever website project. My supervisor at the College of Southern Idaho asked if anybody wanted to make a website for the Office On Aging because IT was so backed up we wouldn't be able to get to it for a long time. One of my friends and I decided to use this as an opportunity to start a business and this would be our first project. This site is geared toward senior citizens and therefore the text is larger by default, and there is the option to increase it even more or decrease it. They wanted an easy way to add files to the site, and they already used Google Drive, so I set up integration so that they could easily add files to a Google Drive folder that would be displayed on the site as links in table form.",
    },
    {
       name: 'NW Liberty Academy',
