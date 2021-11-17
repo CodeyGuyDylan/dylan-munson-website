@@ -19,7 +19,7 @@ const boring = [
       startDate: `May, 2018`,
       endDate: `January 2020`,
       reference: `Doug Birch - Manager - (208) 358-5439`,
-      responsibilities: `I had a lot of different duties here. Most days I would use the forklift to unload trucks and then organize the inventory, then I would go on my smallwares deliveries to local restaurants around the area, and then I would get back and ready up and big deliveries coming up the next day. I had a lot of other small tasks such as making price tags, stocking the floor, taking inventory, etc. Despite being pretty boring of a job, I do think it helped me with my organizational skills.`,
+      responsibilities: `I had a lot of different duties here. Most days I would use the forklift to unload trucks and then organize the inventory, then I would go on my smallwares deliveries to local restaurants around the area. Finally I would get back and ready up any big deliveries coming up the next day for the installers. I had a lot of other small tasks such as making price tags, stocking the floor, taking inventory, etc. Despite being pretty boring of a job, I do think it helped me with my organizational skills.`,
    },
 ]
 
