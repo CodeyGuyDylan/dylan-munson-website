@@ -93,7 +93,7 @@ const Portfolio: FC = () => {
          </p>
 
          <p>
-            <b>Description:</b> <br /> This is the only non-website procted I've
+            <b>Description:</b> <br /> This is the only non-website project I've
             been able to make thus far. It is not officially on the FitBit app
             store yet because I have not had the time to make it meet their
             requirements, but I use it for myself and have made it available to
