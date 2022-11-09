@@ -36,7 +36,7 @@ const Contact: FC<IContact> = ({ setAlert }) => {
                <li>
                   Email:{' '}
                   <a href='mailto:dylan@novysolutions.com'>
-                     dylan@novysolutions.com
+                     munsondy@gmail.com
                   </a>
                </li>
 

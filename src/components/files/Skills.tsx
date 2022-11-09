@@ -11,6 +11,7 @@ const Skills: FC = () => {
          <ul>
             <li>JavaScript/Node.js</li>
             <li>TypeScript</li>
+            <li>PHP</li>
             <li>CSS</li>
             <li>HTML</li>
             <li>SQL</li>
@@ -60,6 +61,7 @@ const Skills: FC = () => {
          <hr />
 
          <ul>
+            <li>WordPress</li>
             <li>Netlify</li>
             <li>Heroku</li>
             <li>Azure</li>

@@ -18,14 +18,14 @@ const websiteProjects = [
       desc:
          'This site was for a client that wanted their message to be clear, and wanted their website to be an easy way to sign up for their annual symposium. They also wanted to easily be able to see who had signed up for this event. Since they were on a limited budget, we decided to add form submissions to a Google Sheet that they could easily access instead of taking the time to set up a database and a front end for them to view the data. They also wanted to use this site to write blogs, display essay winners, etc. To fill this requirement I set up a CMS with Netlify CMS so they could easily do this on their own.',
    },
-   {
-      name: 'Novy Solutions',
-      url: 'https://novysolutions.com',
-      stack:
-         'Hosted on Netlify, built as a Single Page Application using Create React App, MongoDB to store form submissions, Netlify Forms as backup',
-      desc:
-         "Our business website that we found time to make after the last two projects, it's a simple four page site that contains a contact form. Nothing too complicated with this one.",
-   },
+   // {
+   //    name: 'Novy Solutions',
+   //    url: 'https://novysolutions.com',
+   //    stack:
+   //       'Hosted on Netlify, built as a Single Page Application using Create React App, MongoDB to store form submissions, Netlify Forms as backup',
+   //    desc:
+   //       "Our business website that we found time to make after the last two projects, it's a simple four page site that contains a contact form. Nothing too complicated with this one.",
+   // },
    // {
    //    name: 'Devore & Munn Realty',
    //    url: 'https://devoremunn.com/',
@@ -34,14 +34,14 @@ const websiteProjects = [
    //    desc:
    //       'A simple website for a Realty company that essentially wanted an "Online Business Card" and an way to contact them through a web form. Pretty simple site, just some information and a web form.',
    // },
-   {
-      name: 'NV Farms',
-      url: 'https://boring-pike-11852a.netlify.app/',
-      stack:
-         'Hosted on Netlify, built with Gatsby, Netlify CMS, Netlify Forms and Nodemailer for emails, Shopify integration',
-      desc:
-         "The most complicated site I have had the opportunity to make so far. This is an eCommerce site that uses Shopify as a backend for products. I used the very popular gatsby shopify plugin to grab the data from Shopify and set up live inventory checking so that the site doesn't need to be built every time something is purchased. This site is not technically complete yet as we are just waiting on a 3rd party to get back to NV Farms with templates for the product labels and yada yada yada. The site itself is essentially finished and hopefully I can update this soon with the real URL and remove this part about it not being finished.",
-   },
+   // {
+   //    name: 'NV Farms',
+   //    url: 'https://boring-pike-11852a.netlify.app/',
+   //    stack:
+   //       'Hosted on Netlify, built with Gatsby, Netlify CMS, Netlify Forms and Nodemailer for emails, Shopify integration',
+   //    desc:
+   //       "The most complicated site I have had the opportunity to make so far. This is an eCommerce site that uses Shopify as a backend for products. I used the very popular gatsby shopify plugin to grab the data from Shopify and set up live inventory checking so that the site doesn't need to be built every time something is purchased. This site is not technically complete yet as we are just waiting on a 3rd party to get back to NV Farms with templates for the product labels and yada yada yada. The site itself is essentially finished and hopefully I can update this soon with the real URL and remove this part about it not being finished.",
+   // },
 ]
 
 const Portfolio: FC = () => {

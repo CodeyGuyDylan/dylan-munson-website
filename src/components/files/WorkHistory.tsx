@@ -25,11 +25,22 @@ const boring = [
 
 const relevant = [
    {
+      title: `Automattic`,
+      position: `Senior Frontend Software Engineer`,
+      where: `Remote`,
+      startDate: `May 2022`,
+      endDate: `Current`,
+      references: [
+         `Rob Pugh - Jetpack Marketing Team Lead`
+      ],
+      responsibilities: `As a Frontend Developer for the Jetpack Marketing team, I have gotten to work on several different code bases on work relating to growing Jetpack as a product. I have gain experience working in a big organization, learned how to focus the details of front end work, and gained much knowledge on how large scale products are marketed and grown.`,
+   },
+   {
       title: `College of Southern Idaho`,
       position: `Software Support Specialist`,
       where: `315 Falls Ave, Twin Falls, ID 83301`,
       startDate: `January 2020`,
-      endDate: `Current`,
+      endDate: `May 2022`,
       references: [
          `Ed Ditlefsen - Application & Data Director - (208) 352-0253`,
          `Kevin Mark - Chief Information Officer`,
